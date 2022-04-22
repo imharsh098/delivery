@@ -10,7 +10,7 @@ import {
 } from "../types";
 import axios from "axios";
 
-export const loginAction = (username, email, password) => async (dispatch) => {
+export const loginAction = (email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST,
@@ -21,8 +21,8 @@ export const loginAction = (username, email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      "/api/store/login",
-      { email, password, username },
+      "/api/stores/login",
+      { email, password },
       config
     );
     dispatch({

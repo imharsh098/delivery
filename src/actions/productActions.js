@@ -18,13 +18,16 @@ export const listproducts = () => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-type": "application/json",
-        "x-auth-key": userInfo.token,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/products/get`, config);
+    const { data } = await axios.get(
+      `/api/products/vendor/get-products/61fe5b4a1de35f8195d6a291`,
+      config
+    );
     dispatch({
       type: PRODUCTS_SUCCESS,
-      payload: data,
+      payload: data.products,
     });
   } catch (error) {
     dispatch({ type: PRODUCTS_FAIL, payload: error.response });
@@ -43,11 +46,15 @@ export const addProduct = (newProduct) => async (dispatch) => {
     const config = {
       headers: {
         "Content-type": "application/json",
-        "x-auth-key": userInfo.token,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/products/addproduct`, newProduct, config);
-    dispatch({ type: PRODUCT_ADD_SUCCESS, payload: data });
+    const { data } = await axios.post(
+      `/api/products/add-product`,
+      newProduct,
+      config
+    );
+    dispatch({ type: PRODUCT_ADD_SUCCESS, payload: data.product });
   } catch (error) {
     dispatch({
       type: PRODUCT_ADD_FAIL,

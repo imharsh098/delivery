@@ -1,17 +1,42 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct } from "../actions/productActions";
 
 function productModal() {
+  const productData = useSelector((state) => state.productData);
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+  const { products } = productData;
+  const history = useNavigate();
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (userInfo) {
+      dispatch(
+        addProduct({
+          name: item.name,
+          image: item.image,
+          category: item.category,
+          vendorId: item.vendorId,
+          price: item.price,
+          qty: item.qty,
+          unit: item.unit,
+        })
+      );
+    }
+  };
   const [item, setItem] = useState({
     name: "",
-    price: "",
+    image: "",
     category: "",
+    vendorId: "",
+    price: "",
+    qty: "",
+    unit: "",
   });
-  const addProduct = (e) => {
-    setItem({ ...help, [e.target.id]: e.target.value });
-  };
-  const adding = async (e) => {
-    e.preventDefault();
-    // dispatch(loginAction(log.email, log.password));
+  const adding = (event) => {
+    setItem({ ...item, [event.target.id]: event.target.value });
   };
   return (
     <div
@@ -39,13 +64,19 @@ function productModal() {
             </button>
           </div>
           <div className="modal-body">
-            <form onSubmit={adding}>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label for="">
                   <i className="fa-2x fa-bold fa-mobile-screen-button"></i>Item
                   Image
                 </label>
-                <input type="file" className="form-control" />
+                <input
+                  type="file"
+                  className="form-control"
+                  id="image"
+                  value={item.image}
+                  onChange={adding}
+                />
               </div>
               <div className="form-group">
                 <label for="">
@@ -57,7 +88,7 @@ function productModal() {
                   className="form-control"
                   id="name"
                   value={item.name}
-                  onChange={addProduct}
+                  onChange={adding}
                 />
               </div>
               <div className="form-group">
@@ -70,7 +101,7 @@ function productModal() {
                   className="form-control"
                   id="category"
                   value={item.category}
-                  onChange={addProduct}
+                  onChange={adding}
                 />
               </div>
               <div className="form-group">
@@ -83,14 +114,40 @@ function productModal() {
                   className="form-control"
                   id="price"
                   value={item.price}
-                  onChange={addProduct}
+                  onChange={adding}
                 />
               </div>
+              <div className="form-group">
+                <label for="">
+                  <i className="fa-2x fa-solid fa-message-pen"></i>
+                  <p style={{ fontSize: large }}>ITEM PRICE</p>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="qty"
+                  value={item.qty}
+                  onChange={adding}
+                />
+              </div>
+              <div className="form-group">
+                <label for="">
+                  <i className="fa-2x fa-solid fa-message-pen"></i>
+                  <p style={{ fontSize: large }}>ITEM PRICE</p>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="unit"
+                  value={item.unit}
+                  onChange={adding}
+                />
+              </div>
+              <button type="Submit" className="btn">
+                Add Product
+              </button>
             </form>
           </div>
-          <button type="Submit" className="btn">
-            Add Product
-          </button>
         </div>
       </div>
     </div>

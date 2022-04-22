@@ -21,7 +21,7 @@ function App() {
       <div className="main">
         <SideNav />
         <Routes>
-          {/* <Route path="/" element={<Home />}></Route> */}
+          <Route path="/" element={<Home />}></Route>
           <Route path="/order" element={<Order />}></Route>
           <Route path="/product" element={<Product />}></Route>
           <Route path="/support" element={<Support />}></Route>
@@ -30,7 +30,7 @@ function App() {
           <Route path="/insights" element={<Insight />}></Route>
           <Route path="/settings" element={<Settings />}></Route>
           <Route path="/terms" element={<TermsConditions />}></Route>
-          <Route path="/productmodal" element={<productModal />}></Route>
+          <Route path="/productModal" element={<productModal />}></Route>
         </Routes>
       </div>
     </Router>
