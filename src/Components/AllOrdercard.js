@@ -1,6 +1,6 @@
 import React from "react";
 
-function AllOrdercard() {
+function AllOrdercard({ ele }) {
   return (
     <div className="order-card" style={{ border: "1px solid black" }}>
       <div
@@ -9,7 +9,7 @@ function AllOrdercard() {
       ></div>
       <div className="order-data" style={{ width: "100%" }}>
         <div className="order-row1">
-          <div className="receipient-name">Samantha Saint</div>
+          <div className="receipient-name">{ele.userId.name}</div>
           <div className="order-cost">$ 20.45</div>
         </div>
         <div className="order-row2">

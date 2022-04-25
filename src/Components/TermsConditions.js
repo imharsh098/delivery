@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import TopNav from "./TopNav";
 import SideNav from "./sideNav";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -22,7 +22,7 @@ function TermsConditions() {
       };
       const { data } = await axios.get(`/api/orders/terms`, config);
       console.log(data.message);
-      // setData(terms);
+      setDataTNC(data.message);
     }
   }, []);
   return (
@@ -45,19 +45,21 @@ function TermsConditions() {
                 <h5 className="modal-title" id="exampleModalLongTitle">
                   Terms of Use
                 </h5>
-
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <Link to="/product">
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </Link>
               </div>
               <div className="modal-body">
                 <div className="txt">
                   <p>
+                    {dataTNC}
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s, when an unknown

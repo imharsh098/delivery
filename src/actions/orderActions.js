@@ -15,13 +15,13 @@ export const listorders = () => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-type": "application/json",
-        "x-auth-key": userInfo.token,
+        authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/orders/get`, config);
+    const { data } = await axios.get(`/api/orders/getallorders`, config);
     dispatch({
       type: ORDERS_SUCCESS,
-      payload: data,
+      payload: data.orders,
     });
   } catch (error) {
     dispatch({ type: ORDERS_FAIL, payload: error.response });

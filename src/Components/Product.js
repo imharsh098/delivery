@@ -94,38 +94,14 @@ function Product() {
               return <ProductCard ele={ele} />;
             })}
             <div className="product_card">
-              <button
-                type="button"
-                class="btn"
-                data-toggle="modal"
-                data-target="#exampleModalLong"
-              ></button>
-              <img
-                src="./img/potato.jpg"
-                alt="Avatar"
-                style={{ borderRadius: "18px 18px 0px 0px" }}
-              />
-              <div className="h4">
-                <h4>
-                  <b>Fresh </b>
-                </h4>
-              </div>
-
-              <div className="product_price">
-                <h4>
-                  <b>Price</b>
-                </h4>
-                <h4>
-                  <b>/kg</b>
-                </h4>
-              </div>
               <div className="product_edit">
                 <Link
+                  class="active"
                   to="/productModal"
                   data-toggle="modal"
                   data-target="#exampleModalLong"
                 >
-                  <button>EDIT</button>
+                  <span className="links-name">Add New Product</span>
                 </Link>
               </div>
             </div>

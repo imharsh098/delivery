@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loginAction, registerAction } from "../actions/userActions";
 
@@ -14,6 +14,7 @@ function Home() {
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginAction(log.email, log.password));
+    history("/order");
   };
   // register function
   const handleRegister = async (e) => {

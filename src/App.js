@@ -12,7 +12,7 @@ import Wallet from "./Components/Wallet";
 import Settings from "./Components/Settings";
 import TermsConditions from "./Components/TermsConditions";
 import Home from "./Components/Home";
-import productModal from "./Components/ProductModal";
+import ProductModal from "./Components/ProductModal";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
         <Route path="/insight" element={<Insight />}></Route>
         <Route path="/settings" element={<Settings />}></Route>
         <Route path="/terms" element={<TermsConditions />}></Route>
-        <Route path="/productModal" element={<productModal />}></Route>
+        <Route path="/productModal" element={<ProductModal />}></Route>
       </Routes>
     </Router>
   );
