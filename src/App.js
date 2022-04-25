@@ -17,22 +17,18 @@ import productModal from "./Components/ProductModal";
 function App() {
   return (
     <Router>
-      <TopNav />
-      <div className="main">
-        <SideNav />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/order" element={<Order />}></Route>
-          <Route path="/product" element={<Product />}></Route>
-          <Route path="/support" element={<Support />}></Route>
-          <Route path="/reviews" element={<Review />}></Route>
-          <Route path="/wallet" element={<Wallet />}></Route>
-          <Route path="/insights" element={<Insight />}></Route>
-          <Route path="/settings" element={<Settings />}></Route>
-          <Route path="/terms" element={<TermsConditions />}></Route>
-          <Route path="/productModal" element={<productModal />}></Route>
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/order" element={<Order />}></Route>
+        <Route path="/product" element={<Product />}></Route>
+        <Route path="/support" element={<Support />}></Route>
+        <Route path="/reviews" element={<Review />}></Route>
+        <Route path="/wallet" element={<Wallet />}></Route>
+        <Route path="/insight" element={<Insight />}></Route>
+        <Route path="/settings" element={<Settings />}></Route>
+        <Route path="/terms" element={<TermsConditions />}></Route>
+        <Route path="/productModal" element={<productModal />}></Route>
+      </Routes>
     </Router>
   );
 }

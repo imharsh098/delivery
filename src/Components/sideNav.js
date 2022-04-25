@@ -43,7 +43,12 @@ function SideNav() {
             </Link>
           </li>
           <li>
-            <Link to="/terms">
+            <Link
+              class="active"
+              to="/terms"
+              data-toggle="modal"
+              data-target="#exampleModalLong"
+            >
               <i className="bx bx-grid-alt"></i>
               <span className="links-name">Term & Condition</span>
             </Link>
