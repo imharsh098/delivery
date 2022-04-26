@@ -40,6 +40,9 @@ function ProductModal() {
   const adding = (event) => {
     setItem({ ...item, [event.target.id]: event.target.value });
   };
+  const redirect = () => {
+    history("/");
+  };
   return (
     <div>
       <TopNav />
@@ -65,6 +68,7 @@ function ProductModal() {
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  onClick={redirect}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -149,7 +153,11 @@ function ProductModal() {
                       onChange={adding}
                     />
                   </div>
-                  <button type="Submit" className="btn">
+                  <button
+                    type="Submit"
+                    className="btn"
+                    style={{ backgroundColor: "green", width: "100%" }}
+                  >
                     Add Product
                   </button>
                 </form>

@@ -21,7 +21,6 @@ function Order() {
     }
     if (userInfo) {
       dispatch(listorders());
-      console.log(orders);
     }
   }, []);
 
@@ -35,8 +34,15 @@ function Order() {
             <div className="pending_order">
               <div className="color_line"></div>
               <div className="pending_cards">
+                {/* {orders.map((ele) => {
+                  return <PendingOrdercard  />;
+                })} */}
                 {orders.map((ele) => {
-                  return <PendingOrdercard ele={ele} />;
+                  if (ele.isDelivered === false) {
+                    return <PendingOrdercard key={ele._id} ele={ele} />;
+                  } else {
+                    return null;
+                  }
                 })}
               </div>
             </div>
@@ -44,7 +50,11 @@ function Order() {
               <div className="color_line"></div>
               <div className="order-container">
                 {orders.map((ele) => {
-                  return <AllOrdercard ele={ele} />;
+                  if (ele.isDelivered === true) {
+                    return <AllOrdercard key={ele._id} ele={ele} />;
+                  } else {
+                    return null;
+                  }
                 })}
               </div>
             </div>

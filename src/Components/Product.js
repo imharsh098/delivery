@@ -23,42 +23,6 @@ function Product() {
     }
   }, []);
 
-  // const products = [
-  //   {
-  //     name: "Carrot",
-  //     price: "$4",
-  //     image: "./img/carrot.jpg",
-  //   },
-  //   {
-  //     name: "Tomato",
-  //     price: "$4",
-  //     image: "./img/tomato.jpg",
-  //   },
-  //   {
-  //     name: "Onions",
-  //     price: "$4",
-  //     image: "./img/onions.jpg",
-  //   },
-  //   {
-  //     name: "Potato",
-  //     price: "$4",
-  //     image: "./img/potato.jpg",
-  //   },
-  //   {
-  //     name: "Brinjal",
-  //     price: "$4",
-  //     image: "./img/brinjal.jpg",
-  //   },
-  //   {
-  //     name: "Raddish",
-  //     price: "$4",
-  //     image: "./img/raddish.jpg",
-  //   },
-  // ];
-  // **************************************
-  // Change products to product in the map
-  // **************************************
-
   return (
     <div>
       <TopNav />
@@ -91,20 +55,28 @@ function Product() {
           </div>
           <div className="product_cards">
             {products.map((ele) => {
-              return <ProductCard ele={ele} />;
+              return <ProductCard ele={ele} key={ele._id} />;
             })}
-            <div className="product_card">
-              <div className="product_edit">
-                <Link
-                  class="active"
-                  to="/productModal"
-                  data-toggle="modal"
-                  data-target="#exampleModalLong"
-                >
-                  <span className="links-name">Add New Product</span>
-                </Link>
-              </div>
-            </div>
+            <button
+              style={{
+                width: "30%",
+                height: "10%",
+                borderRadius: "50px",
+                color: "white",
+                backgroundColor: "green",
+                marginTop: "18%",
+              }}
+            >
+              <Link
+                className="active"
+                to="/productModal"
+                data-toggle="modal"
+                data-target="#exampleModalLong"
+                style={{ color: "white", backgroundColor: "green" }}
+              >
+                Add New Product
+              </Link>
+            </button>
           </div>
         </div>
       </div>

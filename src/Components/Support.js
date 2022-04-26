@@ -1,8 +1,10 @@
 import { React, useState } from "react";
 import TopNav from "./TopNav";
 import SideNav from "./sideNav";
+import { useNavigate, Link } from "react-router-dom";
 
 function Support() {
+  const history = useNavigate();
   const [help, setHelp] = useState({
     number: "",
     message: "",
@@ -13,6 +15,9 @@ function Support() {
   const handleSupport = async (e) => {
     e.preventDefault();
     // dispatch(loginAction(log.email, log.password));
+  };
+  const redirect = () => {
+    history("/");
   };
   return (
     <div>
@@ -39,6 +44,7 @@ function Support() {
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  onClick={redirect}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>

@@ -21,10 +21,12 @@ function TermsConditions() {
         },
       };
       const { data } = await axios.get(`/api/orders/terms`, config);
-      console.log(data.message);
       setDataTNC(data.message);
     }
   }, []);
+  const redirect = () => {
+    history("/");
+  };
   return (
     <div>
       <TopNav />
@@ -34,7 +36,7 @@ function TermsConditions() {
         <div
           className="modal fade"
           id="exampleModalLong"
-          tabindex="-1"
+          tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLongTitle"
           aria-hidden="true"
@@ -45,16 +47,15 @@ function TermsConditions() {
                 <h5 className="modal-title" id="exampleModalLongTitle">
                   Terms of Use
                 </h5>
-                <Link to="/product">
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  onClick={redirect}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <div className="modal-body">
                 <div className="txt">

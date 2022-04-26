@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TopNav from "./Components/TopNav";
-import SideNav from "./Components/sideNav";
+
 import Order from "./Components/Order";
 import Product from "./Components/Product";
 import Support from "./Components/Support";

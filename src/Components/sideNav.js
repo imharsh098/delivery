@@ -44,7 +44,7 @@ function SideNav() {
           </li>
           <li>
             <Link
-              class="active"
+              className="active"
               to="/terms"
               data-toggle="modal"
               data-target="#exampleModalLong"

@@ -16,23 +16,23 @@ function TopNav() {
     }
   };
   return (
-    <div class="topnav">
-      <Link class="active hamburger" to="/wallet">
-        <i class="fa-solid fa-fw fa-wallet"></i>Burger
+    <div className="topnav">
+      <Link className="active hamburger" to="/wallet">
+        <i className="fa-solid fa-fw fa-wallet"></i>Burger
       </Link>
-      <Link class="active" to="/wallet">
-        <i class="fa-solid fa-fw fa-wallet"></i>Wallet
+      <Link className="active" to="/wallet">
+        <i className="fa-solid fa-fw fa-wallet"></i>Wallet
       </Link>
       <Link
-        class="active"
+        className="active"
         to="/support"
         data-toggle="modal"
         data-target="#exampleModalLong"
       >
-        <i class="fa-solid fa-fw fa-wallet"></i>Help
+        <i className="fa-solid fa-fw fa-wallet"></i>Help
       </Link>
-      <Link class="active" to="/">
-        <i class="fa-solid fa-fw fa-wallet"></i>
+      <Link className="active" to="/">
+        <i className="fa-solid fa-fw fa-wallet"></i>
         <button onClick={handleLogout}>Logout</button>
       </Link>
     </div>

@@ -14,7 +14,6 @@ function Home() {
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginAction(log.email, log.password));
-    history("/order");
   };
   // register function
   const handleRegister = async (e) => {
@@ -55,12 +54,12 @@ function Home() {
 
   useEffect(() => {
     if (userInfo) {
-      history("/");
+      history("/order");
     }
   }, [userLogin]);
   useEffect(() => {
     if (registerInfo) {
-      history("/");
+      history("/order");
     }
   }, [userRegister]);
   const [reg, setReg] = useState({
