@@ -24,12 +24,12 @@ function Home() {
         fullName: reg.fullName,
         phoneNo: reg.phoneNo,
         address: {
-          city: reg.address.city,
-          country: reg.address.country,
-          state: reg.address.state,
-          zip: reg.address.zip,
-          address1: reg.address.address1,
-          address2: reg.address.address2,
+          city: reg.city,
+          country: reg.country,
+          state: reg.state,
+          zip: reg.zip,
+          address1: reg.address1,
+          address2: reg.address2,
         },
         services: reg.services,
         categories: reg.categories,
@@ -37,7 +37,7 @@ function Home() {
         ownerAadhar: reg.ownerAadhar,
         gst: reg.gst,
         email: reg.emaill,
-        licenseNo: reg.licenseNo,
+        liscenseNo: reg.licenseNo,
         ownerPan: reg.ownerPan,
         bankName: reg.bankName,
         accountHolder: reg.accountHolder,
@@ -59,7 +59,7 @@ function Home() {
   }, [userLogin]);
   useEffect(() => {
     if (registerInfo) {
-      history("/order");
+      history("/");
     }
   }, [userRegister]);
   const [reg, setReg] = useState({
@@ -67,17 +67,15 @@ function Home() {
     fullName: "",
     phoneNo: "",
     emaill: "",
-    address: {
-      city: "",
-      country: "",
-      state: "",
-      zip: "",
-      address1: "",
-      address2: "",
-    },
+    city: "",
+    country: "",
+    state: "",
+    zip: "",
+    address1: "",
+    address2: "",
     services: "",
     categories: "",
-    active: true,
+    active: false,
     ownerAadhar: "",
     gst: "",
     licenseNo: "",
@@ -89,7 +87,7 @@ function Home() {
     vendorType: "",
     upiId: "",
     storeManager: "",
-    whatsappUpdate: true,
+    whatsappUpdate: false,
     passwordd: "",
   });
   const [log, setLog] = useState({
@@ -98,14 +96,16 @@ function Home() {
   });
 
   const registration = (e) => {
-    if (e.target.id === "whatsappUpdate" || e.target.id === "active") {
-      setReg({ ...reg, [e.target.id]: !e.target.value });
-    } else {
-      setReg({ ...reg, [e.target.id]: e.target.value });
-    }
+    setReg({ ...reg, [e.target.id]: e.target.value });
   };
   const loggingIn = (e) => {
     setLog({ ...log, [e.target.id]: e.target.value });
+  };
+  const redirect = () => {
+    history("/order");
+  };
+  const newdirect = () => {
+    history("/");
   };
 
   return (
@@ -115,6 +115,13 @@ function Home() {
         className="btn"
         data-toggle="modal"
         data-target="#exampleModalLong"
+        style={{
+          position: "absolute",
+          left: "54%",
+          top: "1.8%",
+          background: "green",
+          width: "6rem",
+        }}
       >
         Login
       </button>
@@ -122,7 +129,14 @@ function Home() {
         type="button"
         class="btn"
         data-toggle="modal"
-        data-target="#exampleModalLong"
+        data-target="#exampleModalLongg"
+        style={{
+          position: "absolute",
+          left: "60%",
+          top: "1.8%",
+          background: "green",
+          width: "6rem",
+        }}
       >
         Register
       </button>
@@ -139,17 +153,20 @@ function Home() {
           <div className="login_all">
             <form onSubmit={handleLogin}>
               <div className="contain">
-                <h2 className="modal-title" id="exampleModalLongTitle">
-                  LOGIN
-                </h2>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <div style={{ width: "100%" }}>
+                  <h2 className="modal-title" id="exampleModalLongTitle">
+                    LOGIN
+                  </h2>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={redirect}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
                 <div className="row100">
                   <div className="coln">
                     <div className="inputBox">
@@ -182,14 +199,19 @@ function Home() {
                     </div>
                   </div>
                 </div>
-
-                <div className="row100">
-                  <div className="coln">
-                    <button type="submit" className="support_btn">
-                      Login
-                    </button>
-                  </div>
-                </div>
+                <br />
+                <button
+                  type="submit"
+                  className="support_btn"
+                  style={{
+                    width: "50%",
+                    height: "3rem",
+                    borderRadius: "20px",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  Login
+                </button>
               </div>
             </form>
           </div>
@@ -197,8 +219,8 @@ function Home() {
       </div>
 
       <div
-        class="modal fade"
-        id="exampleModalLong"
+        className="modal fade"
+        id="exampleModalLongg"
         tabindex="-1"
         role="dialog"
         aria-labelledby="exampleModalLongTitle"
@@ -216,6 +238,7 @@ function Home() {
                   class="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  onClick={redirect}
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -241,20 +264,15 @@ function Home() {
                         name=""
                         required="required"
                         id="emaill"
-                        value={reg.email}
+                        value={reg.emaill}
                         onChange={registration}
                       />
                       <span class="text">Email</span>
                       <span class="line"></span>
                     </div>
                   </div>
-                  <div class="coln">
-                    <div class="inputBox">
-                      <input type="text" name="" required="required" />
-                      <span class="text">Email</span>
-                      <span class="line"></span>
-                    </div>
-                  </div>
+                </div>
+                <div class="row100">
                   <div class="coln">
                     <div class="inputBox">
                       <input
@@ -262,14 +280,29 @@ function Home() {
                         name=""
                         required="required"
                         id="passwordd"
-                        value={reg.password}
+                        value={reg.passwordd}
                         onChange={registration}
                       />
                       <span class="text">Password</span>
                       <span class="line"></span>
                     </div>
                   </div>
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="phoneNo"
+                        value={reg.phoneNo}
+                        onChange={registration}
+                      />
+                      <span class="text">Phone No.</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
                 </div>
+
                 <div class="row100">
                   <div class="coln">
                     <div class="inputBox">
@@ -299,6 +332,8 @@ function Home() {
                       <span class="line"></span>
                     </div>
                   </div>
+                </div>
+                <div class="row100">
                   <div class="coln">
                     <div class="inputBox">
                       <input
@@ -313,8 +348,21 @@ function Home() {
                       <span class="line"></span>
                     </div>
                   </div>
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="upiId"
+                        value={reg.upiId}
+                        onChange={registration}
+                      />
+                      <span class="text">UPI Id</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
                 </div>
-
                 <div class="row100">
                   <div class="coln">
                     <div class="inputBox">
@@ -322,14 +370,91 @@ function Home() {
                         type="text"
                         name=""
                         required="required"
-                        id="phoneNo"
-                        value={reg.phoneNo}
+                        id="address1"
+                        value={reg.address1}
                         onChange={registration}
                       />
-                      <span class="text">Phone No.</span>
+                      <span class="text">Flat-No.</span>
                       <span class="line"></span>
                     </div>
                   </div>
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="address2"
+                        value={reg.address2}
+                        onChange={registration}
+                      />
+                      <span class="text">Locality</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row100">
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="city"
+                        value={reg.city}
+                        onChange={registration}
+                      />
+                      <span class="text">City</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="zip"
+                        value={reg.zip}
+                        onChange={registration}
+                      />
+                      <span class="text">ZIP</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row100">
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="state"
+                        value={reg.state}
+                        onChange={registration}
+                      />
+                      <span class="text">State</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="text"
+                        name=""
+                        required="required"
+                        id="country"
+                        value={reg.country}
+                        onChange={registration}
+                      />
+                      <span class="text">Country</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row100">
                   <div class="coln">
                     <div class="inputBox">
                       <input
@@ -366,11 +491,11 @@ function Home() {
                         type="text"
                         name=""
                         required="required"
-                        id="accountNo"
-                        value={reg.accountNo}
+                        id="bankName"
+                        value={reg.bankName}
                         onChange={registration}
                       />
-                      <span class="text">Account No.</span>
+                      <span class="text">Bank Name</span>
                       <span class="line"></span>
                     </div>
                   </div>
@@ -388,17 +513,33 @@ function Home() {
                       <span class="line"></span>
                     </div>
                   </div>
+                </div>
+                <div class="row100">
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="number"
+                        name=""
+                        required="required"
+                        id="accountNo"
+                        value={reg.accountNo}
+                        onChange={registration}
+                      />
+                      <span class="text">Account No.</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
                   <div class="coln">
                     <div class="inputBox">
                       <input
                         type="text"
                         name=""
                         required="required"
-                        id=""
-                        value={reg.address.city}
+                        id="accountHolder"
+                        value={reg.accountHolder}
                         onChange={registration}
                       />
-                      <span class="text">Address</span>
+                      <span class="text">accountHolder</span>
                       <span class="line"></span>
                     </div>
                   </div>
@@ -432,20 +573,6 @@ function Home() {
                       <span class="line"></span>
                     </div>
                   </div>
-                  <div class="coln">
-                    <div class="inputBox">
-                      <input
-                        type="text"
-                        name=""
-                        required="required"
-                        id="categories"
-                        value={reg.categories}
-                        onChange={registration}
-                      />
-                      <span class="text">Categories.</span>
-                      <span class="line"></span>
-                    </div>
-                  </div>
                 </div>
                 <div class="row100">
                   <div class="coln">
@@ -462,39 +589,72 @@ function Home() {
                       <span class="line"></span>
                     </div>
                   </div>
-                  {/* <div class="coln">
-                  <div class="inputBox">
-                    <select name="" id="" class="options">
-                      <option value="volvo">Volvo</option>
-                      <option value="saab">Saab</option>
-                      <option value="fiat">Fiat</option>
-                      <option value="audi">Audi</option>
-                    </select>
-                    <span class="line"></span>
-                  </div>
-                </div> */}
                   <div class="coln">
                     <div class="inputBox">
                       <input
                         type="text"
                         name=""
                         required="required"
-                        id="bankName"
-                        value={reg.bankName}
+                        id="categories"
+                        value={reg.categories}
                         onChange={registration}
                       />
-                      <span class="text">Bank Name</span>
+                      <span class="text">Categories.</span>
                       <span class="line"></span>
                     </div>
                   </div>
                 </div>
+
                 <div class="row100">
                   <div class="coln">
-                    <button type="submit" className="support_btn">
-                      Register
-                    </button>
+                    <div class="inputBox">
+                      <input
+                        type="checkbox"
+                        name=""
+                        required="required"
+                        id="active"
+                        checked={reg.active}
+                        onClick={() => {
+                          setReg({ ...reg, active: !reg.active });
+                        }}
+                      />
+                      <span class="text">active</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="coln">
+                    <div class="inputBox">
+                      <input
+                        type="checkbox"
+                        name=""
+                        required="required"
+                        id="whatsappUpdate"
+                        checked={reg.whatsappUpdate}
+                        onClick={() => {
+                          setReg({
+                            ...reg,
+                            whatsappUpdate: !reg.whatsappUpdate,
+                          });
+                        }}
+                      />
+                      <span class="text">whatsappUpdate</span>
+                      <span class="line"></span>
+                    </div>
                   </div>
                 </div>
+                <br />
+                <button
+                  type="submit"
+                  className="support_btn"
+                  style={{
+                    width: "50%",
+                    height: "3rem",
+                    borderRadius: "20px",
+                    fontSize: "1.5rem",
+                  }}
+                >
+                  REGISTER
+                </button>
               </div>
             </form>
           </div>

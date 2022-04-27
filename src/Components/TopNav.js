@@ -17,23 +17,31 @@ function TopNav() {
   };
   return (
     <div className="topnav">
-      <Link className="active hamburger" to="/wallet">
+      <Link className="activee hamburger" to="/wallet">
         <i className="fa-solid fa-fw fa-wallet"></i>Burger
       </Link>
-      <Link className="active" to="/wallet">
+      <Link className="activee" to="/wallet">
         <i className="fa-solid fa-fw fa-wallet"></i>Wallet
       </Link>
       <Link
-        className="active"
+        className="activee"
         to="/support"
         data-toggle="modal"
         data-target="#exampleModalLong"
       >
         <i className="fa-solid fa-fw fa-wallet"></i>Help
       </Link>
-      <Link className="active" to="/">
+      <Link className="activee" to="/">
         <i className="fa-solid fa-fw fa-wallet"></i>
-        <button onClick={handleLogout}>Logout</button>
+        <button
+          onClick={handleLogout}
+          style={{
+            border: "none",
+            background: "limegreen",
+          }}
+        >
+          Logout
+        </button>
       </Link>
     </div>
   );

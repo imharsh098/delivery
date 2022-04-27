@@ -49,7 +49,7 @@ export const registerAction = (userData) => async (dispatch) => {
       },
     };
     const { data } = await axios
-      .post("/api/store/register", userData, config)
+      .post("/api/stores/register-store", userData, config)
       .then();
     if (data.msg) {
       dispatch({

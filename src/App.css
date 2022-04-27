@@ -22,15 +22,18 @@
 }
 .all_insights {
   height: 20%;
-  background-color: blue;
+  border-radius: 20px;
+  border: 2px solid black;
 }
 .graph {
   height: 80%;
-  background-color: black;
+  border-radius: 20px;
+  border: 2px solid green;
 }
 .top_selling {
-  background-color: red;
   width: 40%;
+  border-radius: 20px;
+  border: 2px solid green;
   overflow-y: auto;
 }
 .title {
@@ -52,22 +55,21 @@ body {
 .home {
   width: 100vw;
   height: 100vh;
+  background-image: url("./Components/img/Capture1.PNG");
+  background-repeat: no-repeat;
 }
 .login_all {
   width: 80%;
   margin: 0 auto;
   padding: 1rem;
-  border-radius: 20px 2px 20px 2px;
   background-color: white;
   box-shadow: 22px 20px 26px 14px rgba(169, 169, 194, 0.6);
-  display: flex;
   justify-content: center;
 }
 .contain {
   width: 100%;
   padding: 1.5rem;
   border: 2px solid black;
-  border-radius: 190px 20px 102px 20px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -88,7 +90,7 @@ body {
   position: relative;
   width: 100%;
   display: grid;
-  margin-left: 20%;
+  margin-left: 10%;
   grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
 }
 .contain .row100 .coln {
@@ -201,11 +203,11 @@ input[type="submit"] {
 }
 .topnav {
   width: 100vw;
-
-  background-color: #555;
-
   display: flex;
   justify-content: flex-end;
+  background-color: #eeeee4;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
 }
 
 /* Navbar links */
@@ -222,8 +224,8 @@ input[type="submit"] {
 }
 
 /* Current/active navbar link */
-.active {
-  background-color: #04aa6d;
+.activee {
+  background-color: limegreen;
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
@@ -250,11 +252,19 @@ input[type="submit"] {
 }
 .sidenav {
   /* margin-top: 1.5%; */
+  background-color: #eeeee4;
   width: 15%;
-  height: 100%;
-  background-color: #555;
-  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
-    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px; */
+  height: 90.5vh;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+#root {
+  /* background-repeat: no-repeat;
+  background-size: auto;
+  background: url("./Components/img/wholebg.jpeg"); */
+  /* background-image: linear-gradient(40deg, #3dbc3d, transparent); */
+  background-color: #eeeee4;
+  height: 100vh;
 }
 
 .logo-containt {
@@ -277,19 +287,23 @@ input[type="submit"] {
   flex-direction: column;
   color: white;
   list-style: none;
-  padding: 1rem;
-  font-size: 2rem;
+  padding: 0.5rem;
+  height: 100%;
+  width: 100%;
+  font-size: 1.5rem;
 }
 .nav-list li {
   text-decoration: none;
   list-style: none;
+  padding: 0.7rem;
+  height: 15%;
 }
-.nav-list li a {
+.nav-list li link {
   text-decoration: none;
 }
 
 .nav-list a:hover {
-  background-color: #000;
+  background-color: white;
 }
 
 .dashboard {
@@ -320,14 +334,14 @@ input[type="submit"] {
 
 .pending_order {
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  border-radius: 20px;
+  border-radius: 9px;
   width: 30%;
 }
 .color_line {
   width: 100%;
   height: 8%;
-  background-color: #04aa6d;
-  border-radius: 19px 19px 0px 0px;
+  background-color: limegreen;
+  border-radius: 9px 9px 0px 0px;
 }
 .pending_cards {
   width: 100%;
@@ -397,6 +411,7 @@ input[type="submit"] {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
     rgba(0, 0, 0, 0.22) 0px 10px 10px;
   width: 60%;
+  border-radius: 9px;
 }
 
 .order-container {
@@ -509,7 +524,7 @@ input[type="submit"] {
   width: 60%;
   font-size: 1.3rem;
   border-radius: 20px;
-  background: #7cfc00;
+  background-color: limegreen;
   margin-left: 19%;
 }
 @media (max-width: 400px) {
@@ -541,7 +556,7 @@ input[type="submit"] {
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .review-container {
-  background: rgb(33, 32, 50);
+  background-color: #eeeee4;
   color: #fff;
   box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.2);
   padding: 1rem;
@@ -561,6 +576,7 @@ input[type="submit"] {
   margin-bottom: 1rem;
   background: rgb(45, 43, 64);
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 .review_card > * {
   padding: 1rem 1.2rem;

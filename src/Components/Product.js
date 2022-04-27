@@ -29,7 +29,7 @@ function Product() {
       <div className="main">
         <SideNav />
         <div className="dashboard">
-          <div className="product_nav" style={{ backgroundColor: "#04aa6dd4" }}>
+          <div className="product_nav" style={{ backgroundColor: "limegreen" }}>
             <ul className="product_ul">
               <li>
                 <a href="#" style={{ color: "white" }}>

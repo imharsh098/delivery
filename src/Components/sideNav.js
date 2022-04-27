@@ -5,39 +5,45 @@ function SideNav() {
   return (
     <div className="sidenav">
       <div className="logo-containt">
-        <div className="logo">
-          <i className="bx bxl-c-plus-plus"></i>
-          <div className="logo_name"> Swiggy </div>
-          {/* <i className="bx bx-menu" id="btn"></i> */}
-        </div>
-
-        <ul className="nav-list">
+        <ul className="nav-list" style={{ color: "black" }}>
           <li>
-            <Link to="/order">
+            <Link to="/order" style={{ color: "limegreen", fontWeight: "650" }}>
               <i className="bx bxs-shopping-bag-alt"></i>
               <span className="links-name">Orders</span>
             </Link>
           </li>
           <li>
-            <Link to="/product">
+            <Link
+              to="/product"
+              style={{ color: "limegreen", fontWeight: "650" }}
+            >
               <i className="bx bx-grid-alt"></i>
               <span className="links-name">Products</span>
             </Link>
           </li>
           <li>
-            <Link to="/insight">
+            <Link
+              to="/insight"
+              style={{ color: "limegreen", fontWeight: "650" }}
+            >
               <i className="bx bx-bar-chart-alt"></i>
               <span className="links-name">Insights</span>
             </Link>
           </li>
           <li>
-            <Link to="/reviews">
+            <Link
+              to="/reviews"
+              style={{ color: "limegreen", fontWeight: "650" }}
+            >
               <i className="bx bx-grid-alt"></i>
               <span className="links-name">Review</span>
             </Link>
           </li>
           <li>
-            <Link to="/settings">
+            <Link
+              to="/settings"
+              style={{ color: "limegreen", fontWeight: "650" }}
+            >
               <i className="bx bx-cog"></i>
               <span className="links-name">Settings</span>
             </Link>
@@ -48,9 +54,10 @@ function SideNav() {
               to="/terms"
               data-toggle="modal"
               data-target="#exampleModalLong"
+              style={{ color: "limegreen", fontWeight: "650" }}
             >
               <i className="bx bx-grid-alt"></i>
-              <span className="links-name">Term & Condition</span>
+              <span className="links-name">Terms</span>
             </Link>
           </li>
         </ul>
