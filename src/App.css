@@ -109,7 +109,7 @@ body {
 .contain .row100 .inputBox input,
 .contain .row100 .inputBox .textarea textarea {
   position: absolute;
-  width: 100%;
+
   height: 100%;
   background: transparent;
   box-shadow: none;
@@ -213,9 +213,14 @@ input[type="submit"] {
 /* Navbar links */
 .topnav a {
   padding: 1rem;
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 1rem;
+}
+@media (min-width: 400px) {
+  .topnav {
+    margin-bottom: "1rem";
+  }
 }
 
 /* Navbar links on mouse-over */
@@ -302,8 +307,8 @@ input[type="submit"] {
   text-decoration: none;
 }
 
-.nav-list a:hover {
-  background-color: white;
+.nav-list li:hover {
+  background-color: limegreen;
 }
 
 .dashboard {
@@ -461,19 +466,19 @@ input[type="submit"] {
   width: 100%;
   height: 10%;
   align-items: center;
-  border-radius: 15px 15px 0px 0px;
+  border-radius: 9px 9px 0px 0px;
 }
 .product_ul {
   color: white;
-  width: 80%;
+  width: 100%;
   margin: 1% auto;
   display: flex;
   justify-content: space-around;
   overflow: hidden;
   list-style: none;
 }
-.product_ul a:hover {
-  background-color: #000;
+.product_ul li {
+  font-size: 1.5rem;
 }
 
 /* li {
@@ -498,34 +503,35 @@ input[type="submit"] {
 .product_card {
   /* Add shadows to create the "card" effect */
   transition: 0.3s;
-  border-radius: 20px;
   width: 25%;
   margin: 1% 1%;
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+  padding: 1%;
+  /* box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
     rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
     rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px,
     rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
-    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; */
+}
+.product_card:hover {
+  border: 2px solid black;
 }
 .h4 {
-  margin: 0 auto;
+  color: #565b6d;
 }
 .product_price {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .product_edit {
   width: 80%;
   margin: 0 auto;
 }
 .product_edit > button {
-  width: 60%;
+  width: 100%;
   font-size: 1.3rem;
-  border-radius: 20px;
   background-color: limegreen;
-  margin-left: 19%;
 }
 @media (max-width: 400px) {
   .product_cards {

@@ -1,32 +1,13 @@
 import { React, useState, useEffect } from "react";
 import TopNav from "./TopNav";
 import SideNav from "./sideNav";
-import { useNavigate, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function TermsConditions() {
+function Commission() {
   const history = useNavigate();
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-  const [dataTNC, setDataTNC] = useState("");
-  useEffect(async () => {
-    if (!userInfo) {
-      history("/login");
-    }
-    if (userInfo) {
-      const config = {
-        headers: {
-          authorization: `Bearer ${userInfo.token}`,
-        },
-      };
-      const { data } = await axios.get(`/api/stores/terms`, config);
-      setDataTNC(data);
-    }
-  }, []);
-  const redirect = async (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    history("/product");
+    history("/order");
   };
   return (
     <div>
@@ -46,9 +27,9 @@ function TermsConditions() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLongTitle">
-                  Terms of Use
+                  Commission Policy
                 </h5>
-                <button
+                {/* <button
                   type="button"
                   className="close"
                   data-dismiss="modal"
@@ -56,12 +37,19 @@ function TermsConditions() {
                   onClick={redirect}
                 >
                   <span aria-hidden="true">&times;</span>
-                </button>
+                </button> */}
               </div>
               <div className="modal-body">
                 <div className="txt">
                   <p>
-                    {dataTNC.termsofuse}
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries,
+                    but also the leap into electronic typesetting, remaining
+                    essentially unchanged.
+                    <br />
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
                     standard dummy text ever since the 1500s, when an unknown
@@ -71,24 +59,13 @@ function TermsConditions() {
                     essentially unchanged.
                   </p>
                 </div>
-              </div>
-
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLongTitle">
-                  Company Policy
-                </h5>
-              </div>
-              <div className="modal-body">
-                <div className="txt">
-                  <p>
-                    {dataTNC.companypolicy}
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </p>
-                </div>
+                <button
+                  type="submit"
+                  className="support_btn"
+                  onClick={handleClick}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </div>
@@ -98,4 +75,4 @@ function TermsConditions() {
   );
 }
 
-export default TermsConditions;
+export default Commission;

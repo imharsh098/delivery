@@ -1,4 +1,5 @@
 import React from "react";
+import "./deliveryreg.css";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -12,12 +13,24 @@ import Settings from "./Components/Settings";
 import TermsConditions from "./Components/TermsConditions";
 import Home from "./Components/Home";
 import ProductModal from "./Components/ProductModal";
+import Map from "./Components/Map.js";
+import Register from "./Components/Register.js";
+import Register1 from "./Components/Register1.js";
+import Register2 from "./Components/Register2.js";
+import Register3 from "./Components/Register3.js";
+import Login from "./Components/Login.js";
+import Commission from "./Commission";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/register1" element={<Register1 />}></Route>
+        <Route path="/register2" element={<Register2 />}></Route>
+        <Route path="/register3" element={<Register3 />}></Route>
         <Route path="/order" element={<Order />}></Route>
         <Route path="/product" element={<Product />}></Route>
         <Route path="/support" element={<Support />}></Route>
@@ -27,6 +40,8 @@ function App() {
         <Route path="/settings" element={<Settings />}></Route>
         <Route path="/terms" element={<TermsConditions />}></Route>
         <Route path="/productModal" element={<ProductModal />}></Route>
+        <Route path="/map" element={<Map />}></Route>
+        <Route path="/commission" element={<Commission />}></Route>
       </Routes>
     </Router>
   );

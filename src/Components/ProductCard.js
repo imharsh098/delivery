@@ -3,11 +3,7 @@ import React from "react";
 function ProductCard({ ele }) {
   return (
     <div className="product_card">
-      <img
-        src={ele.image}
-        alt="Avatar"
-        style={{ borderRadius: "18px 18px 0px 0px" }}
-      />
+      <img src={ele.image} alt="Avatar" />
       <div className="h4">
         <h4>
           <b>Fresh {ele.name}</b>
@@ -15,13 +11,22 @@ function ProductCard({ ele }) {
       </div>
 
       <div className="product_price">
-        <h4>
-          <b>Price</b>
-        </h4>
-        <h4>
-          <b>{ele.price}/kg</b>
-        </h4>
+        <h6>
+          <b>{ele.price} Rs. for 1 kg</b>
+        </h6>
+        <div class="col-sm-5">
+          <button
+            type="button"
+            class="btn btn-xs btn-toggle"
+            data-toggle="button"
+            aria-pressed="false"
+            autocomplete="off"
+          >
+            <div class="handle"></div>
+          </button>
+        </div>
       </div>
+      <br></br>
       <div className="product_edit">
         <button>EDIT</button>
       </div>

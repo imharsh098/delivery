@@ -17,7 +17,7 @@ function Order() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!userInfo) {
-      history("/");
+      history("/login");
     }
     if (userInfo) {
       dispatch(listorders());

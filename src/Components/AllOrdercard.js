@@ -9,7 +9,7 @@ function AllOrdercard({ ele }) {
       ></div>
       <div className="order-data" style={{ width: "100%" }}>
         <div className="order-row1">
-          <div className="receipient-name">{ele.userId.name}</div>
+          <div className="receipient-name"></div>
           <div className="order-cost">$ 20.45</div>
         </div>
         <div className="order-row2">

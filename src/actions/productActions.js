@@ -22,7 +22,7 @@ export const listproducts = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `/api/products/vendor/get-products/61fe5b4a1de35f8195d6a291`,
+      `/api/products/vendor/get-products/Medicines`,
       config
     );
     dispatch({

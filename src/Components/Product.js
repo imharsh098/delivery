@@ -32,22 +32,22 @@ function Product() {
           <div className="product_nav" style={{ backgroundColor: "limegreen" }}>
             <ul className="product_ul">
               <li>
-                <a href="#" style={{ color: "white" }}>
+                <a href="#" style={{ color: "black" }}>
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" style={{ color: "white" }}>
+                <a href="#" style={{ color: "black" }}>
                   News
                 </a>
               </li>
               <li>
-                <a href="#" style={{ color: "white" }}>
+                <a href="#" style={{ color: "black" }}>
                   Contact
                 </a>
               </li>
               <li>
-                <a href="#" style={{ color: "white" }}>
+                <a href="#" style={{ color: "black" }}>
                   About
                 </a>
               </li>

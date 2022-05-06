@@ -24,8 +24,11 @@ function ProductModal() {
           price: item.price,
           qty: item.qty,
           unit: item.unit,
+          inStock: item.inStock,
+          discount: item.discount,
         })
       );
+      history("/product");
     }
   };
   const [item, setItem] = useState({
@@ -36,12 +39,15 @@ function ProductModal() {
     price: "",
     qty: "",
     unit: "",
+    inStock: true,
+    discount: "0",
   });
   const adding = (event) => {
     setItem({ ...item, [event.target.id]: event.target.value });
   };
-  const redirect = () => {
-    history("/");
+  const redirect = async (e) => {
+    e.preventDefault();
+    history("/product");
   };
   return (
     <div>
@@ -81,7 +87,7 @@ function ProductModal() {
                       Item Image
                     </label>
                     <input
-                      type="file"
+                      type="text"
                       className="form-control"
                       id="image"
                       value={item.image}
@@ -94,7 +100,7 @@ function ProductModal() {
                       ITEM NAME
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="name"
                       value={item.name}
@@ -130,7 +136,7 @@ function ProductModal() {
                   <div className="form-group">
                     <label for="">
                       <i className="fa-2x fa-solid fa-message-pen"></i>
-                      <p style={{ fontSize: "large" }}>ITEM PRICE</p>
+                      <p style={{ fontSize: "large" }}>Quantity</p>
                     </label>
                     <input
                       type="text"
@@ -143,7 +149,7 @@ function ProductModal() {
                   <div className="form-group">
                     <label for="">
                       <i className="fa-2x fa-solid fa-message-pen"></i>
-                      <p style={{ fontSize: "large" }}>ITEM PRICE</p>
+                      <p style={{ fontSize: "large" }}>Unit</p>
                     </label>
                     <input
                       type="text"

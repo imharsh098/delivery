@@ -20,7 +20,7 @@ function TopNav() {
       <Link className="activee hamburger" to="/wallet">
         <i className="fa-solid fa-fw fa-wallet"></i>Burger
       </Link>
-      <Link className="activee" to="/wallet">
+      <Link className="activee" to="/map">
         <i className="fa-solid fa-fw fa-wallet"></i>Wallet
       </Link>
       <Link

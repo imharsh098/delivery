@@ -1,12 +1,16 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import TopNav from "./TopNav";
 import SideNav from "./sideNav";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 function Support() {
   const history = useNavigate();
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
   const [help, setHelp] = useState({
-    number: "",
+    phoneNo: "",
     message: "",
   });
   const helper = (e) => {
@@ -14,10 +18,22 @@ function Support() {
   };
   const handleSupport = async (e) => {
     e.preventDefault();
-    // dispatch(loginAction(log.email, log.password));
+    const config = {
+      headers: {
+        authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    console.log(help);
+    await axios.post(`/api/stores/support`, help, config);
   };
-  const redirect = () => {
-    history("/");
+  useEffect(async () => {
+    if (!userInfo) {
+      history("/login");
+    }
+  }, []);
+  const redirect = async (e) => {
+    e.preventDefault();
+    history("/product");
   };
   return (
     <div>
@@ -59,9 +75,10 @@ function Support() {
                     <input
                       type="number"
                       className="form-control"
-                      id="number"
-                      value={help.number}
+                      id="phoneNo"
+                      value={help.phoneNo}
                       onChange={helper}
+                      required="required"
                     />
                   </div>
                   <div className="form-group">
@@ -75,13 +92,14 @@ function Support() {
                       id="message"
                       value={help.message}
                       onChange={helper}
+                      required="required"
                     />
                   </div>
+                  <button type="submit" className="support_btn">
+                    Submit
+                  </button>
                 </form>
               </div>
-              <button type="Submit" className="support_btn">
-                Submit
-              </button>
             </div>
           </div>
         </div>
