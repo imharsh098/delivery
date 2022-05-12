@@ -6,13 +6,9 @@ function Register() {
   const [data, setData] = useState({
     fullName: "",
     email: "",
-    password: "",
-    panNo: "",
-    aadharNo: "",
     phoneNo: "",
-    uploadAadharfront: "",
-    uploadAadharback: "",
-    uploadPan: "",
+    password: "",
+    confirmpassword: "",
   });
 
   const handleChange = (e) => {
@@ -48,6 +44,10 @@ function Register() {
               <span className="progress-count">4</span>
               <span className="progress-label">Bank Details</span>
             </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">5</span>
+              <span className="progress-label">Terms of Use</span>
+            </li>
           </ul>
         </section>
         <div className="form first">
@@ -65,19 +65,6 @@ function Register() {
                   required="required"
                 />
               </div>
-
-              <div className="input-fields">
-                <label for="">Mobile Number</label>
-                <input
-                  type="number"
-                  id="phoneNo"
-                  value={data.phoneNo}
-                  onChange={handleChange}
-                  placeholder="Enter Your Mobile Number"
-                  required
-                />
-              </div>
-
               <div className="input-fields">
                 <label for="">Email Id</label>
                 <input
@@ -91,6 +78,17 @@ function Register() {
               </div>
 
               <div className="input-fields">
+                <label for="">Mobile Number</label>
+                <input
+                  type="number"
+                  id="phoneNo"
+                  value={data.phoneNo}
+                  onChange={handleChange}
+                  placeholder="Enter Your Mobile Number"
+                  required
+                />
+              </div>
+              <div className="input-fields">
                 <label for="">Password </label>
                 <input
                   type="password"
@@ -101,62 +99,14 @@ function Register() {
                   required="required"
                 />
               </div>
-
               <div className="input-fields">
-                <label for="">Aadhar Number</label>
+                <label for="">Confirm Password </label>
                 <input
-                  type="number"
-                  id="aadharNo"
-                  value={data.aadharNo}
+                  type="password"
+                  id="confirmpassword"
+                  value={data.confirmpassword}
                   onChange={handleChange}
-                  placeholder="Enter Your Aadhar Number"
-                  required="required"
-                />
-              </div>
-
-              <div className="input-fields">
-                <label for="">Image of Aadhar card (Front)</label>
-                <input
-                  type="text"
-                  id="uploadAadharfront"
-                  value={data.uploadAadharfront}
-                  onChange={handleChange}
-                  placeholder=""
-                  required="required"
-                />
-              </div>
-              <div className="input-fields">
-                <label for="">Image of Aadhar card (Back)</label>
-                <input
-                  type="text"
-                  id="uploadAadharback"
-                  value={data.uploadAadharback}
-                  onChange={handleChange}
-                  placeholder=""
-                  required="required"
-                />
-              </div>
-
-              <div className="input-fields">
-                <label for="">PAN Card</label>
-                <input
-                  type="text"
-                  id="panNo"
-                  value={data.panNo}
-                  onChange={handleChange}
-                  placeholder="Enter PAN No."
-                  required="required"
-                />
-              </div>
-
-              <div className="input-fields">
-                <label for="">Image of PAN card (Front)</label>
-                <input
-                  type="text"
-                  id="uploadPan"
-                  value={data.uploadPan}
-                  onChange={handleChange}
-                  placeholder=""
+                  placeholder="Enter Your Password"
                   required="required"
                 />
               </div>

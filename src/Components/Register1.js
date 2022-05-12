@@ -1,13 +1,9 @@
 import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register1() {
   const history = useNavigate();
-  // useEffect(() => {
-  //   const registerinfo = localStorage.getItem("registerinfo")
-  //     ? JSON.parse(localStorage.getItem("registerinfo"))
-  //     : "";
-  // }, []);
   const registerinfo = localStorage.getItem("registerinfo")
     ? JSON.parse(localStorage.getItem("registerinfo"))
     : "";
@@ -15,30 +11,35 @@ function Register1() {
     fullName: registerinfo.fullName,
     email: registerinfo.email,
     password: registerinfo.password,
-    panNo: registerinfo.panNo,
-    aadharNo: registerinfo.aadharNo,
+    confirmpassword: registerinfo.confirmpassword,
     phoneNo: registerinfo.phoneNo,
-    uploadAadharfront: registerinfo.uploadAadharfront,
-    uploadAadharback: registerinfo.uploadAadharback,
-    uploadPan: registerinfo.uploadPan,
-    liscenseNo: "",
-    gst: "",
-    storeName: "",
+    countryCode: "",
+    stateCode: "",
+    zipcode: "",
+    streetName: "",
+    streetNumber: "",
+    city: "",
+    categories: "",
+    services: "",
     storeManager: "",
+    storeName: "",
     vendorType: "",
-    uploadGSTcertificate: "",
-    uploadMenu: "",
   });
+
+  const getBack = async (e) => {
+    history("/register");
+  };
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem("registerinfo", JSON.stringify(data));
-    history("/register2");
+    history("/map");
   };
+
   return (
     <div className="container1">
       <header>Registration</header>
@@ -64,6 +65,10 @@ function Register1() {
               {/* <span className="progress-count">4</span-progress-count> */}
               <span className="progress-label">Bank Details</span>
             </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">5</span>
+              <span className="progress-label">Terms of Use</span>
+            </li>
           </ul>
         </section>
         <div className="form second">
@@ -81,40 +86,84 @@ function Register1() {
                   required="required"
                 />
               </div>
-
               <div className="input-fields">
-                <label for="">License Number</label>
+                <label for="">Vendor Type</label>
                 <input
                   type="text"
-                  id="liscenseNo"
-                  value={data.liscenseNo}
+                  id="vendorType"
+                  value={data.vendorType}
                   onChange={handleChange}
-                  placeholder="Enter License Number"
+                  placeholder="Enter Vendor Type"
+                  required="required"
+                />
+              </div>
+              <div className="input-fields">
+                <label for="">Store Address (House No)</label>
+                <input
+                  type="number"
+                  id="streetNumber"
+                  value={data.streetNumber}
+                  onChange={handleChange}
+                  placeholder="Enter Street Number"
+                  required
+                />
+              </div>
+              <div className="input-fields">
+                <label for="">Store Address (Locality)</label>
+                <input
+                  type="text"
+                  id="streetName"
+                  value={data.streetName}
+                  onChange={handleChange}
+                  placeholder="Enter Locality Name"
                   required
                 />
               </div>
 
               <div className="input-fields">
-                <label for="">GST Number</label>
+                <label for="">Store Address (City)</label>
                 <input
                   type="text"
-                  id="gst"
-                  value={data.gst}
+                  id="city"
+                  value={data.city}
                   onChange={handleChange}
-                  placeholder="Enter GST Number"
-                  required="required"
+                  placeholder="Enter City"
+                  required
                 />
               </div>
-              {/* GST Certificate */}
+
               <div className="input-fields">
-                <label for="">Upload GST Certificate</label>
+                <label for="">Store Address (State)</label>
                 <input
                   type="text"
-                  id="uploadGSTcertificate"
-                  value={data.uploadGSTcertificate}
+                  id="stateCode"
+                  value={data.stateCode}
                   onChange={handleChange}
-                  placeholder=""
-                  required="required"
+                  placeholder="Enter State"
+                  required
+                />
+              </div>
+
+              <div className="input-fields">
+                <label for="">Store Address (PIN Code)</label>
+                <input
+                  type="number"
+                  id="zipcode"
+                  value={data.zipcode}
+                  onChange={handleChange}
+                  placeholder="Enter ZIP Code"
+                  required
+                />
+              </div>
+              <div className="input-fields">
+                <label for="">Store Address (Country Code)</label>
+                <input
+                  type="text"
+                  id="countryCode"
+                  value={data.countryCode}
+                  onChange={handleChange}
+                  placeholder="Enter Country Code"
+                  required
                 />
               </div>
 
@@ -129,33 +178,47 @@ function Register1() {
                   required="required"
                 />
               </div>
-              {/* Product Menu */}
-              <div className="input-fields">
-                <label for="">Upload Product Menu</label>
-                <input
-                  type="text"
-                  id="uploadMenu"
-                  value={data.uploadMenu}
+              <div className="inputBox">
+                <label for="">Categories</label>
+                <select
+                  name=""
+                  id="categories"
+                  value={data.categories}
                   onChange={handleChange}
-                  placeholder=""
-                  required="required"
-                />
+                  className="options"
+                >
+                  <option value="volvo">--Select--</option>
+                  <option value="volvo">Foods Beverages</option>
+                  <option value="saab">Pharma Medicine</option>
+                  <option value="fiat">Grocery</option>
+                  <option value="audi">Fruits & Vegetable</option>
+                  <option value="audi">Meat & Fish </option>
+                  <option value="audi">Pet Supplies</option>
+                </select>
+                <span className="line"></span>
               </div>
 
-              <div className="input-fields">
-                <label for="">Vendor Type</label>
-                <input
-                  type="text"
-                  id="vendorType"
-                  value={data.vendorType}
+              <div className="inputBox">
+                <label for="">Services</label>
+                <select
+                  name=""
+                  id="services"
+                  value={data.services}
                   onChange={handleChange}
-                  placeholder="Enter Account Number"
-                  required="required"
-                />
+                  className="options"
+                >
+                  <option value="volvo">--Select--</option>
+                  <option value="volvo">Delivery + Takeaway</option>
+                  <option value="saab">Only Delivery</option>
+                  <option value="fiat">Only Takeaway</option>
+                  <option value="audi">All Services</option>
+                </select>
+                <span className="line"></span>
               </div>
+              {/* Product Menu */}
             </div>
             <div className="buttons">
-              <button className="backbtn">
+              <button className="backbtn" onClick={getBack}>
                 <span className="btnText">Back</span>
                 <i className="uil uil-navigator"></i>
               </button>

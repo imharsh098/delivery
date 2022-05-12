@@ -1,32 +1,20 @@
-import { React, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { loginAction, registerAction } from "../actions/userActions";
+import { React, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register3() {
-  const dispatch = useDispatch();
-  const userRegister = useSelector((state) => state.userRegister);
-  const { userInfo: registerInfo } = userRegister;
+  const history = useNavigate();
   const registerinfo = localStorage.getItem("registerinfo")
     ? JSON.parse(localStorage.getItem("registerinfo"))
     : "";
-  useEffect(() => {
-    console.log(registerinfo);
-  }, []);
+  const getBack = async (e) => {
+    history("/register2");
+  };
   const [data, setData] = useState({
     fullName: registerinfo.fullName,
     email: registerinfo.email,
-    password: registerinfo.password,
-    panNo: registerinfo.panNo,
-    aadharNo: registerinfo.aadharNo,
     phoneNo: registerinfo.phoneNo,
-    uploadAadharfront: registerinfo.uploadAadharfront,
-    uploadAadharback: registerinfo.uploadAadharback,
-    uploadPan: registerinfo.uploadPan,
-    uploadGSTcertificate: registerinfo.uploadGSTcertificate,
-    uploadMenu: registerinfo.uploadMenu,
-    liscenseNo: registerinfo.liscenseNo,
-    gst: registerinfo.gst,
+    password: registerinfo.password,
+    confirmpassword: registerinfo.confirmpassword,
     storeName: registerinfo.storeName,
     storeManager: registerinfo.storeManger,
     vendorType: registerinfo.vendorType,
@@ -38,64 +26,32 @@ function Register3() {
     city: registerinfo.city,
     categories: registerinfo.categories,
     services: registerinfo.services,
+    uploadMenu: registerinfo.uploadMenu,
+    latitude: registerinfo.latitude,
+    longitude: registerinfo.longitude,
+    panNo: registerinfo.panNo,
+    aadharNo: registerinfo.aadharNo,
+    uploadAadharfront: registerinfo.uploadAadharfront,
+    uploadAadharback: registerinfo.uploadAadharback,
+    uploadPan: registerinfo.uploadPan,
+    uploadGSTcertificate: registerinfo.uploadGSTcertificate,
+    liscenseNo: registerinfo.liscenseNo,
+    gst: registerinfo.gst,
     bankName: "",
     accountHolder: "",
     accountNo: "",
     ifsc: "",
     upiId: "",
     cancelledCheque: "",
-    terms: true,
-    policy: true,
-    whatsappUpdate: true,
-    active: true,
   });
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.id]: e.target.value });
   };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      registerAction({
-        storeName: data.storeName,
-        fullName: data.fullName,
-        phoneNo: data.phoneNo,
-        address: {
-          city: data.city,
-          countryCode: data.countryCode,
-          stateCode: data.stateCode,
-          zipcode: data.zipcode,
-          streetName: data.streetName,
-          streetNumber: data.streetNumber,
-        },
-        services: data.services,
-        categories: data.categories,
-        active: data.active,
-        ownerAadhar: data.aadharNo,
-        gst: data.gst,
-        email: data.email,
-        liscenseNo: data.liscenseNo,
-        ownerPan: data.panNo,
-        bankName: data.bankName,
-        accountHolder: data.accountHolder,
-        accountNo: data.accountNo,
-        ifsc: data.ifsc,
-        vendorType: data.vendorType,
-        upiId: data.upiId,
-        storeManager: data.storeManager,
-        whatsappUpdate: data.whatsappUpdate,
-        terms: data.terms,
-        policy: data.policy,
-        password: data.password,
-        uploadAadharfront: data.uploadAadharfront,
-        uploadAadharback: data.uploadAadharback,
-        uploadPan: data.uploadPan,
-        uploadGSTcertificate: data.uploadGSTcertificate,
-        uploadMenu: data.uploadMenu,
-        cancelledCheque: data.cancelledCheque,
-      })
-    );
+    localStorage.setItem("registerinfo", JSON.stringify(data));
+    history("/register4");
   };
   return (
     <div className="container1">
@@ -118,6 +74,10 @@ function Register3() {
             <li className="step-wizard-item ">
               <span className="progress-count">4</span>
               <span className="progress-label">Bank Details</span>
+            </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">5</span>
+              <span className="progress-label">Terms of Use</span>
             </li>
           </ul>
         </section>
@@ -195,67 +155,9 @@ function Register3() {
                   required
                 />
               </div>
-              <div className="checkbox">
-                <input
-                  type="checkbox"
-                  id="terms"
-                  checked={data.terms}
-                  onClick={() => {
-                    setData({
-                      ...data,
-                      terms: !data.terms,
-                    });
-                  }}
-                  required="required"
-                />
-                Terms & Conditions
-                <br />
-                <input
-                  type="checkbox"
-                  id="policy"
-                  checked={data.policy}
-                  onClick={() => {
-                    setData({
-                      ...data,
-                      policy: !data.policy,
-                    });
-                  }}
-                  required="required"
-                />{" "}
-                Company Policy
-                <br />
-                <input
-                  type="checkbox"
-                  id="active"
-                  checked={data.active}
-                  onClick={() => {
-                    setData({
-                      ...data,
-                      active: !data.active,
-                    });
-                  }}
-                  required="required"
-                />
-                Status Active
-                <br />
-                <input
-                  type="checkbox"
-                  id="whatsappUpdate"
-                  checked={data.whatsappUpdate}
-                  onClick={() => {
-                    setData({
-                      ...data,
-                      whatsappUpdate: !data.whatsappUpdate,
-                    });
-                  }}
-                  required="required"
-                />
-                Whatsapp Update
-                <br />
-              </div>
             </div>
             <div className="buttons">
-              <button className="nextbtn">
+              <button className="nextbtn" onClick={getBack}>
                 <span className="btnText">Back</span>
                 <i className="uil uil-navigator"></i>
               </button>

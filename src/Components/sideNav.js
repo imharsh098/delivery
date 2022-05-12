@@ -18,12 +18,12 @@ function SideNav() {
               <span className="links-name">Products</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/map" style={{ color: "black", fontWeight: "650" }}>
               <i className="bx bx-grid-alt"></i>
               <span className="links-name">MAPS</span>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/insight" style={{ color: "black", fontWeight: "650" }}>
               <i className="bx bx-bar-chart-alt"></i>

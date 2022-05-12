@@ -21,7 +21,7 @@ export const listorders = () => async (dispatch, getState) => {
     const { data } = await axios.get(`/api/orders/getallorders`, config);
     dispatch({
       type: ORDERS_SUCCESS,
-      payload: data.orders,
+      payload: data,
     });
   } catch (error) {
     dispatch({ type: ORDERS_FAIL, payload: error.response });

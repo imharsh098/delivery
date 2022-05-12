@@ -13,6 +13,7 @@ function Order() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading } = userLogin;
   const { orders } = orderData;
+  //  Extract date and time from orderData
   const history = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,12 +35,11 @@ function Order() {
             <div className="pending_order">
               <div className="color_line"></div>
               <div className="pending_cards">
-                {/* {orders.map((ele) => {
-                  return <PendingOrdercard  />;
-                })} */}
-                {orders.map((ele) => {
-                  if (ele.isDelivered === false) {
-                    return <PendingOrdercard key={ele._id} ele={ele} />;
+                {orders.map((ele, index) => {
+                  if (ele.status === "Order Placed") {
+                    return (
+                      <PendingOrdercard key={ele._id} ele={ele} index={index} />
+                    );
                   } else {
                     return null;
                   }
@@ -49,9 +49,11 @@ function Order() {
             <div className="all_orders">
               <div className="color_line"></div>
               <div className="order-container">
-                {orders.map((ele) => {
-                  if (ele.isDelivered === true) {
-                    return <AllOrdercard key={ele._id} ele={ele} />;
+                {orders.map((ele, index) => {
+                  if (ele.status === "Order Placed") {
+                    return (
+                      <AllOrdercard key={ele._id} ele={ele} index={index} />
+                    );
                   } else {
                     return null;
                   }

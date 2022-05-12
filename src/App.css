@@ -355,9 +355,16 @@ input[type="submit"] {
   flex-direction: column;
   overflow: auto;
 }
+.accept-button {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 0.5rem;
+}
 .pending_card {
+  display: flex;
+  flex-direction: column;
   width: 90%;
-  height: 30%;
+  height: 35%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin: 0 auto;
   font-family: "Montserrat";

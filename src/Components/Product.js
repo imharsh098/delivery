@@ -6,6 +6,7 @@ import ProductCard from "./ProductCard.js";
 import TopNav from "./TopNav";
 import SideNav from "./sideNav";
 import "./img/carrot.jpg";
+import axios from "axios";
 
 function Product() {
   const productData = useSelector((state) => state.productData);
@@ -14,11 +15,22 @@ function Product() {
   const { products } = productData;
   const history = useNavigate();
   const dispatch = useDispatch();
-  useEffect(() => {
+  const [subcategory, setSubcategory] = useState([]);
+  useEffect(async () => {
     if (!userInfo) {
       history("/");
     }
     if (userInfo) {
+      const config = {
+        headers: {
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+      const { data } = await axios.get(
+        `/api/products/getSubcategories`,
+        config
+      );
+      setSubcategory(data.subCategory);
       dispatch(listproducts());
     }
   }, []);
@@ -31,26 +43,15 @@ function Product() {
         <div className="dashboard">
           <div className="product_nav" style={{ backgroundColor: "limegreen" }}>
             <ul className="product_ul">
-              <li>
-                <a href="#" style={{ color: "black" }}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ color: "black" }}>
-                  News
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ color: "black" }}>
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a href="#" style={{ color: "black" }}>
-                  About
-                </a>
-              </li>
+              {subcategory.map((ele) => {
+                return (
+                  <li>
+                    <a href="#" style={{ color: "black" }}>
+                      {ele}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           <div className="product_cards">
@@ -70,8 +71,6 @@ function Product() {
               <Link
                 className="active"
                 to="/productModal"
-                data-toggle="modal"
-                data-target="#exampleModalLong"
                 style={{ color: "white", backgroundColor: "green" }}
               >
                 Add New Product

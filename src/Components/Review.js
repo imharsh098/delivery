@@ -21,8 +21,8 @@ function Review() {
         },
       };
       const { data } = await axios.get(`/api/orders/fetchReviews`, config);
-      console.log(2, data.msg);
-      setDataReview(data.msg);
+      console.log(2, data);
+      setDataReview(data);
     }
   }, []);
   return (
@@ -39,16 +39,14 @@ function Review() {
                     <div className="review_card-top">
                       <div className="name">
                         <div className="img one" alt="">
-                          NF
+                          GB
+                          {/* add a avatar for this image */}
                         </div>
-                        <p>Full {ele.userId}</p>
+                        <p>Full {ele.userId.name}</p>
                       </div>
                       <div className="rate">
+                        <span>{ele.rating}</span>
                         <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star-half"></i>
                       </div>
                     </div>
 
@@ -63,6 +61,7 @@ function Review() {
 
                     <div className="review_card-action">
                       <span>13 Feb, 2021</span>
+                      {/* add date of time stam here */}
                       <button className="btn">
                         <i className="fas fa-external-link-alt"></i>
                         Share

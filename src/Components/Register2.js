@@ -1,51 +1,82 @@
 import { React, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register2() {
   const history = useNavigate();
-  // useEffect(() => {
-  //   const registerinfo = localStorage.getItem("userInfo")
-  //     ? JSON.parse(localStorage.getItem("userInfo"))
-  //     : "";
-  // }, []);
   const registerinfo = localStorage.getItem("registerinfo")
     ? JSON.parse(localStorage.getItem("registerinfo"))
     : "";
+  // const [newdata, setNewdata] = useState({
+  //   uploadAadharfront: "",
+  //   uploadAadharback: "",
+  //   uploadPan: "",
+  //   uploadGSTcertificate: "",
+  //   uploadMenu: "",
+  // });
   const [data, setData] = useState({
     fullName: registerinfo.fullName,
     email: registerinfo.email,
     password: registerinfo.password,
-    panNo: registerinfo.panNo,
-    aadharNo: registerinfo.aadharNo,
+    confirmpassword: registerinfo.confirmpassword,
     phoneNo: registerinfo.phoneNo,
-    uploadAadharfront: registerinfo.uploadAadharfront,
-    uploadAadharback: registerinfo.uploadAadharback,
-    uploadPan: registerinfo.uploadPan,
-    uploadGSTcertificate: registerinfo.uploadGSTcertificate,
-    uploadMenu: registerinfo.uploadMenu,
-    liscenseNo: registerinfo.liscenseNo,
-    gst: registerinfo.gst,
     storeName: registerinfo.storeName,
     storeManager: registerinfo.storeManger,
     vendorType: registerinfo.vendorType,
-    countryCode: "",
-    stateCode: "",
-    zipcode: "",
-    streetName: "",
-    streetNumber: "",
-    stateCode: "",
-    categories: "",
-    services: "",
-  });
+    countryCode: registerinfo.countryCode,
+    stateCode: registerinfo.stateCode,
+    zipcode: registerinfo.zipcode,
+    streetName: registerinfo.streetName,
+    streetNumber: registerinfo.streetNumber,
+    city: registerinfo.city,
+    categories: registerinfo.categories,
+    services: registerinfo.services,
+    uploadAadharfront: "",
+    uploadAadharback: "",
+    uploadPan: "",
+    uploadGSTcertificate: "",
+    uploadMenu: "",
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.id]: e.target.value });
+    latitude: registerinfo.latitude,
+    longitude: registerinfo.longitude,
+    panNo: "",
+    aadharNo: "",
+
+    liscenseNo: "",
+    gst: "",
+  });
+  const getBack = async (e) => {
+    history("/map");
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    if (e.target.id === "uploadAadharfront") {
+      console.log(e.target.files, "1");
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    }
+    if (e.target.id === "uploadAadharback") {
+      console.log(e.target.files, "2");
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    }
+    if (e.target.id === "uploadPan") {
+      console.log(e.target.files, "3");
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    }
+    if (e.target.id === "uploadGSTcertificate") {
+      console.log(e.target.files, "4");
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    }
+    if (e.target.id === "uploadMenu") {
+      console.log(e.target.files, "5");
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    } else {
+      setData({ ...data, [e.target.id]: e.target.value });
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem("registerinfo", JSON.stringify(data));
-    history("/register3");
   };
   return (
     <div className="container1">
@@ -72,136 +103,243 @@ function Register2() {
               {/* <span className="progress-count">4</span-progress-count> */}
               <span className="progress-label">Bank Details</span>
             </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">5</span>
+              <span className="progress-label">Terms of Use</span>
+            </li>
           </ul>
         </section>
         <div className="form Third">
           <div className="details personal">
             <span className="title">Store Details</span>
             <div className="fields">
-              <div className="inputBox">
-                <label for="">Categories</label>
-                <select
-                  name=""
-                  id="categories"
-                  value={data.categories}
-                  onChange={handleChange}
-                  className="options"
-                >
-                  <option value="volvo">--Select--</option>
-                  <option value="volvo">Foods Beverages</option>
-                  <option value="saab">Pharma Medicine</option>
-                  <option value="fiat">Grocery</option>
-                  <option value="audi">Fruits & Vegetable</option>
-                  <option value="audi">Meat & Fish </option>
-                  <option value="audi">Pet Supplies</option>
-                </select>
-                <span className="line"></span>
-              </div>
-
-              {/* <div className="input-fields">
-                <label for="">Sub Categories</label>
+              <div className="input-fields">
+                <label for="">Upload Product Menu</label>
                 <input
-                  type="text"
-                  placeholder="Enter Services"
-                  id="services"
-                  value={data.services}
+                  type="file"
+                  id="uploadMenu"
+                  name="image"
                   onChange={handleChange}
+                  placeholder=""
                   required="required"
                 />
-              </div> */}
-
-              <div className="inputBox">
-                {/* <!-- <input type="text" name="" required="required" /> -->
-             <!-- <span className="text"></span> --> */}
-                <label for="">Services</label>
-                <select
-                  name=""
-                  id="services"
-                  value={data.services}
-                  onChange={handleChange}
-                  className="options"
+                <button
+                  onClick={async () => {
+                    const formData1 = new FormData();
+                    // Update the formData object
+                    formData1.append("image", data.uploadMenu);
+                    // setData({ ...data, [e.target.id]: e.target.files[0] });
+                    const config = {
+                      headers: {
+                        contentType: "multipart/form-data",
+                      },
+                    };
+                    const imagedata1 = await axios.post(
+                      `/api/upload/`,
+                      formData1,
+                      config
+                    );
+                    setData({
+                      ...data,
+                      uploadMenu: imagedata1.data.imagedata,
+                    });
+                  }}
                 >
-                  <option value="volvo">--Select--</option>
-                  <option value="volvo">Delivery + Takeaway</option>
-                  <option value="saab">Only Delivery</option>
-                  <option value="fiat">Only Takeaway</option>
-                  <option value="audi">All Services</option>
-                </select>
-                <span className="line"></span>
+                  Upload
+                </button>
               </div>
-
               <div className="input-fields">
-                <label for="">Store Address (House No)</label>
+                <label for="">Aadhar Number</label>
                 <input
                   type="number"
-                  id="streetNumber"
-                  value={data.streetNumber}
+                  id="aadharNo"
+                  value={data.aadharNo}
                   onChange={handleChange}
-                  placeholder="Enter Street Number"
-                  required
+                  placeholder="Enter Your Aadhar Number"
+                  required="required"
                 />
               </div>
+
               <div className="input-fields">
-                <label for="">Store Address (Locality)</label>
+                <label for="">Image of Aadhar card (Front)</label>
+                <input
+                  type="file"
+                  id="uploadAadharfront"
+                  name="image"
+                  onChange={handleChange}
+                  placeholder=""
+                  required="required"
+                />
+                <button
+                  onClick={async () => {
+                    const formData2 = new FormData();
+                    // Update the formData object
+                    formData2.append("image", data.uploadAadharfront);
+                    // setData({ ...data, [e.target.id]: e.target.files[0] });
+                    const config = {
+                      headers: {
+                        contentType: "multipart/form-data",
+                      },
+                    };
+                    const imagedata2 = await axios.post(
+                      `/api/upload/`,
+                      formData2,
+                      config
+                    );
+                    setData({
+                      ...data,
+                      uploadAadharfront: imagedata2.data.imagedata,
+                    });
+                  }}
+                >
+                  Upload
+                </button>
+              </div>
+              <div className="input-fields">
+                <label for="">Image of Aadhar card (Back)</label>
+                <input
+                  type="file"
+                  id="uploadAadharback"
+                  name="image"
+                  onChange={handleChange}
+                  placeholder=""
+                  required="required"
+                />
+                <button
+                  onClick={async () => {
+                    const formData3 = new FormData();
+                    // Update the formData object
+                    formData3.append("image", data.uploadAadharback);
+                    // setData({ ...data, [e.target.id]: e.target.files[0] });
+                    const config = {
+                      headers: {
+                        contentType: "multipart/form-data",
+                      },
+                    };
+                    const imagedata3 = await axios.post(
+                      `/api/upload/`,
+                      formData3,
+                      config
+                    );
+                    setData({
+                      ...data,
+                      uploadAadharback: imagedata3.data.imagedata,
+                    });
+                  }}
+                >
+                  Upload
+                </button>
+              </div>
+
+              <div className="input-fields">
+                <label for="">PAN Card</label>
                 <input
                   type="text"
-                  id="streetName"
-                  value={data.streetName}
+                  id="panNo"
+                  value={data.panNo}
                   onChange={handleChange}
-                  placeholder="Enter Locality Name"
+                  placeholder="Enter PAN No."
+                  required="required"
+                />
+              </div>
+
+              <div className="input-fields">
+                <label for="">Image of PAN card (Front)</label>
+                <input
+                  type="file"
+                  id="uploadPan"
+                  name="image"
+                  onChange={handleChange}
+                  placeholder=""
+                  required="required"
+                />
+                <button
+                  onClick={async () => {
+                    const formData4 = new FormData();
+                    // Update the formData object
+                    formData4.append("image", data.uploadPan);
+                    // setData({ ...data, [e.target.id]: e.target.files[0] });
+                    const config = {
+                      headers: {
+                        contentType: "multipart/form-data",
+                      },
+                    };
+                    const imagedata4 = await axios.post(
+                      `/api/upload/`,
+                      formData4,
+                      config
+                    );
+                    setData({
+                      ...data,
+                      uploadPan: imagedata4.data.imagedata,
+                    });
+                  }}
+                >
+                  Upload
+                </button>
+              </div>
+              <div className="input-fields">
+                <label for="">License Number</label>
+                <input
+                  type="text"
+                  id="liscenseNo"
+                  value={data.liscenseNo}
+                  onChange={handleChange}
+                  placeholder="Enter License Number"
                   required
                 />
               </div>
 
               <div className="input-fields">
-                <label for="">Store Address (City)</label>
+                <label for="">GST Number</label>
                 <input
                   type="text"
-                  id="city"
-                  value={data.city}
+                  id="gst"
+                  value={data.gst}
                   onChange={handleChange}
-                  placeholder="Enter City"
-                  required
+                  placeholder="Enter GST Number"
+                  required="required"
                 />
               </div>
-
+              {/* GST Certificate */}
               <div className="input-fields">
-                <label for="">Store Address (State)</label>
+                <label for="">Upload GST Certificate</label>
                 <input
-                  type="text"
-                  id="stateCode"
-                  value={data.stateCode}
+                  type="file"
+                  id="uploadGSTcertificate"
+                  name="image"
                   onChange={handleChange}
-                  placeholder="Enter State"
-                  required
+                  placeholder=""
+                  required="required"
                 />
-              </div>
-
-              <div className="input-fields">
-                <label for="">Store Address (PIN Code)</label>
-                <input
-                  type="number"
-                  id="zipcode"
-                  value={data.zipcode}
-                  onChange={handleChange}
-                  placeholder="Enter ZIP Code"
-                  required
-                />
-              </div>
-              <div className="input-fields">
-                <label for="">Store Address (Country Code)</label>
-                <input
-                  type="text"
-                  id="countryCode"
-                  value={data.countryCode}
-                  onChange={handleChange}
-                  placeholder="Enter Country Code"
-                  required
-                />
+                <button
+                  onClick={async () => {
+                    const formData5 = new FormData();
+                    // Update the formData object
+                    formData5.append("image", data.uploadGSTcertificate);
+                    // setData({ ...data, [e.target.id]: e.target.files[0] });
+                    const config = {
+                      headers: {
+                        contentType: "multipart/form-data",
+                      },
+                    };
+                    const imagedata5 = await axios.post(
+                      `/api/upload/`,
+                      formData5,
+                      config
+                    );
+                    setData({
+                      ...data,
+                      uploadGSTcertificate: imagedata5.data.imagedata,
+                    });
+                  }}
+                >
+                  Upload
+                </button>
               </div>
             </div>
             <div className="buttons">
-              <button className="backbtn">
+              <button className="backbtn" onClick={getBack}>
                 <span className="btnText">Back</span>
                 <i className="uil uil-navigator"></i>
               </button>

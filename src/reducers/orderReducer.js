@@ -10,7 +10,12 @@ export const orderReducer = (state = { orders: [] }, action) => {
     case ORDERS_REQUEST:
       return { loading: true, orders: [] };
     case ORDERS_SUCCESS:
-      return { loading: false, orders: action.payload };
+      return {
+        loading: false,
+        orders: action.payload.orders,
+        date: action.payload.date,
+        time: action.payload.time,
+      };
     case ORDERS_FAIL:
       return { ...state, loading: false, error: action.payload };
     case REMOVE_ERROR:

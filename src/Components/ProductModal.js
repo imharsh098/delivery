@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import TopNav from "./TopNav";
 import SideNav from "./sideNav";
 import { addProduct } from "../actions/productActions";
+import axios from "axios";
 
 function ProductModal() {
   const productData = useSelector((state) => state.productData);
@@ -12,164 +13,153 @@ function ProductModal() {
   const { products } = productData;
   const history = useNavigate();
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
+  const [productimage, setProductimage] = useState("");
+  const fileUpload = async (e) => {
     e.preventDefault();
     if (userInfo) {
-      dispatch(
-        addProduct({
-          name: item.name,
-          image: item.image,
-          category: item.category,
-          vendorId: item.vendorId,
-          price: item.price,
-          qty: item.qty,
-          unit: item.unit,
-          inStock: item.inStock,
-          discount: item.discount,
-        })
-      );
-      history("/product");
+      // Create an object of formData
+      const formData = new FormData();
+      // Update the formData object
+      formData.append("image", item.image);
+      const config = {
+        headers: {
+          contentType: "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post(`/api/upload/`, formData, config);
+      setProductimage({ image: data.imagedata });
     }
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(
+      addProduct({
+        name: item.name,
+        image: productimage.image,
+        category: item.category,
+        subcategory: item.subcategory,
+        price: item.price,
+        qty: item.qty,
+        unit: item.unit,
+        inStock: item.inStock,
+        discount: item.discount,
+      })
+    );
+    // history("/product");
+  };
+
   const [item, setItem] = useState({
     name: "",
     image: "",
-    category: "",
-    vendorId: "",
+    category: userInfo.categories,
+    subcategory: "",
     price: "",
     qty: "",
     unit: "",
     inStock: true,
     discount: "0",
   });
+
   const adding = (event) => {
-    setItem({ ...item, [event.target.id]: event.target.value });
+    if (event.target.id == "image") {
+      setItem({ ...item, [event.target.id]: event.target.files[0] });
+    } else {
+      setItem({ ...item, [event.target.id]: event.target.value });
+    }
   };
-  const redirect = async (e) => {
-    e.preventDefault();
-    history("/product");
-  };
+  // const redirect = async (e) => {
+  //   e.preventDefault();
+  //   history("/product");
+  // };
   return (
     <div>
       <TopNav />
       <div className="main">
         <SideNav />
-        <div
-          className="modal fade"
-          id="exampleModalLong"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLongTitle"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLongTitle">
-                  Add Product Information
-                </h5>
-
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={redirect}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label for="">
-                      <i className="fa-2x fa-bold fa-mobile-screen-button"></i>
-                      Item Image
-                    </label>
+        
+        <div className="container1">
+          <form onSubmit={handleSubmit}>
+            <div className="form first">
+              <div className="details personal">
+                <span className="title">Personal Details</span>
+                <div className="fields">
+                  <div className="input-fields">
+                    <label for="">Item Image</label>
                     <input
-                      type="text"
-                      className="form-control"
+                      type="file"
+                      name="image,"
+                      placeholder=""
                       id="image"
-                      value={item.image}
                       onChange={adding}
+                      required="required"
                     />
+                    <button onClick={fileUpload}>Upload</button>
                   </div>
-                  <div className="form-group">
-                    <label for="">
-                      <i className="fa-2x fa-bold fa-mobile-screen-button"></i>
-                      ITEM NAME
-                    </label>
+                  <div className="input-fields">
+                    <label for="">Item Name</label>
                     <input
                       type="text"
-                      className="form-control"
                       id="name"
                       value={item.name}
                       onChange={adding}
+                      placeholder="Enter Item Name"
+                      required="required"
                     />
                   </div>
-                  <div className="form-group">
-                    <label for="">
-                      <i className="fa-2x fa-solid fa-message-pen"></i>
-                      <p style={{ fontSize: "large" }}>ITEM CATEGORY</p>
-                    </label>
+
+                  <div className="input-fields">
+                    <label for="">Sub-Category</label>
                     <input
                       type="text"
-                      className="form-control"
-                      id="category"
-                      value={item.category}
+                      id="subcategory"
+                      value={item.subcategory}
                       onChange={adding}
+                      placeholder="Enter Product Sub-Category"
+                      required
                     />
                   </div>
-                  <div className="form-group">
-                    <label for="">
-                      <i className="fa-2x fa-solid fa-message-pen"></i>
-                      <p style={{ fontSize: "large" }}>ITEM PRICE</p>
-                    </label>
+                  <div className="input-fields">
+                    <label for="">Product Price</label>
                     <input
-                      type="text"
-                      className="form-control"
+                      type="Number"
                       id="price"
                       value={item.price}
                       onChange={adding}
+                      placeholder="Enter Product Price"
+                      required="required"
                     />
                   </div>
-                  <div className="form-group">
-                    <label for="">
-                      <i className="fa-2x fa-solid fa-message-pen"></i>
-                      <p style={{ fontSize: "large" }}>Quantity</p>
-                    </label>
+                  <div className="input-fields">
+                    <label for="">Quantity</label>
                     <input
                       type="text"
-                      className="form-control"
                       id="qty"
                       value={item.qty}
                       onChange={adding}
+                      placeholder="Quantity"
+                      required="required"
                     />
                   </div>
-                  <div className="form-group">
-                    <label for="">
-                      <i className="fa-2x fa-solid fa-message-pen"></i>
-                      <p style={{ fontSize: "large" }}>Unit</p>
-                    </label>
+                  <div className="input-fields">
+                    <label for="">Unit</label>
                     <input
                       type="text"
-                      className="form-control"
                       id="unit"
                       value={item.unit}
                       onChange={adding}
+                      placeholder="Unit"
+                      required="required"
                     />
                   </div>
-                  <button
-                    type="Submit"
-                    className="btn"
-                    style={{ backgroundColor: "green", width: "100%" }}
-                  >
-                    Add Product
-                  </button>
-                </form>
+                </div>
+
+                <button className="nextbtn" type="submit">
+                  <span className="btnText">Submit</span>
+                  <i className="uil uil-navigator"></i>
+                </button>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
