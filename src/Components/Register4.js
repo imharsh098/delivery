@@ -22,7 +22,7 @@ function Register4() {
     password: registerinfo.password,
     confirmpassword: registerinfo.confirmpassword,
     storeName: registerinfo.storeName,
-    storeManager: registerinfo.storeManger,
+    storeManager: registerinfo.storeManager,
     vendorType: registerinfo.vendorType,
     countryCode: registerinfo.countryCode,
     stateCode: registerinfo.stateCode,
@@ -36,9 +36,6 @@ function Register4() {
     latitude: registerinfo.latitude,
     longitude: registerinfo.longitude,
     panNo: registerinfo.panNo,
-    aadharNo: registerinfo.aadharNo,
-    uploadAadharfront: registerinfo.uploadAadharfront,
-    uploadAadharback: registerinfo.uploadAadharback,
     uploadPan: registerinfo.uploadPan,
     uploadGSTcertificate: registerinfo.uploadGSTcertificate,
     liscenseNo: registerinfo.liscenseNo,
@@ -49,6 +46,8 @@ function Register4() {
     ifsc: registerinfo.ifsc,
     upiId: registerinfo.upiId,
     cancelledCheque: registerinfo.cancelledCheque,
+    openingTime: registerinfo.openingTime,
+    closingTime: registerinfo.closingTime,
     terms: false,
     policy: false,
     whatsappUpdate: false,
@@ -78,7 +77,6 @@ function Register4() {
           services: data.services,
           categories: data.categories,
           active: data.active,
-          ownerAadhar: data.aadharNo,
           gst: data.gst,
           email: data.email,
           liscenseNo: data.liscenseNo,
@@ -91,17 +89,20 @@ function Register4() {
           upiId: data.upiId,
           storeManager: data.storeManager,
           whatsappUpdate: data.whatsappUpdate,
+          openingTime: data.openingTime,
+          closingTime: data.closingTime,
           terms: data.terms,
           policy: data.policy,
           password: data.password,
-          uploadAadharfront: data.uploadAadharfront,
-          uploadAadharback: data.uploadAadharback,
           uploadPan: data.uploadPan,
           uploadGSTcertificate: data.uploadGSTcertificate,
           uploadMenu: data.uploadMenu,
           cancelledCheque: data.cancelledCheque,
         })
       );
+      setTimeout(() => {
+        history("/register5");
+      }, 2000);
     } else {
       console.log("Please Agree to terms and Conditions");
     }

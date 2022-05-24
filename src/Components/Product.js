@@ -31,17 +31,32 @@ function Product() {
         config
       );
       setSubcategory(data.subCategory);
-      dispatch(listproducts());
+      dispatch(listproducts(`Green-Vegetables`));
     }
   }, []);
-
+  // const deleteProduct = async (id) => {
+  //   if (!userInfo) {
+  //     history("/login");
+  //   }
+  //   if (userInfo) {
+  //     const config = {
+  //       headers: {
+  //         authorization: `Bearer ${userInfo.token}`,
+  //       },
+  //     };
+  //     const { data } = await axios.delete(
+  //       `/api/products/delete-product/${id}`,
+  //       config
+  //     );
+  //   }
+  // };
   return (
     <div>
       <TopNav />
       <div className="main">
         <SideNav />
         <div className="dashboard">
-          <div className="product_nav" style={{ backgroundColor: "limegreen" }}>
+          <div className="product_nav" style={{ backgroundColor: "white" }}>
             <ul className="product_ul">
               {subcategory.map((ele) => {
                 return (

@@ -37,7 +37,7 @@ function TopNav() {
           onClick={handleLogout}
           style={{
             border: "none",
-            background: "limegreen",
+            background: "#eeeee4",
           }}
         >
           Logout

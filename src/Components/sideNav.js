@@ -1,60 +1,67 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import "./sideNav.css";
 
 function SideNav() {
+  const [isActive, setActive] = useState(false);
+
+  const toggleClass = () => {
+    setActive(!isActive);
+  };
   return (
     <div className="sidenav">
-      <div className="logo-containt">
-        <ul className="nav-list" style={{ color: "black" }}>
-          <li>
-            <Link to="/order" style={{ color: "black", fontWeight: "650" }}>
-              <i className="bx bxs-shopping-bag-alt"></i>
-              <span className="links-name">Orders</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/product" style={{ color: "black", fontWeight: "650" }}>
-              <i className="bx bx-grid-alt"></i>
-              <span className="links-name">Products</span>
-            </Link>
-          </li>
-          {/* <li>
-            <Link to="/map" style={{ color: "black", fontWeight: "650" }}>
-              <i className="bx bx-grid-alt"></i>
-              <span className="links-name">MAPS</span>
-            </Link>
-          </li> */}
-          <li>
-            <Link to="/insight" style={{ color: "black", fontWeight: "650" }}>
-              <i className="bx bx-bar-chart-alt"></i>
-              <span className="links-name">Insights</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/reviews" style={{ color: "black", fontWeight: "650" }}>
-              <i className="bx bx-grid-alt"></i>
-              <span className="links-name">Review</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/settings" style={{ color: "black", fontWeight: "650" }}>
-              <i className="bx bx-cog"></i>
-              <span className="links-name">Settings</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="active"
-              to="/terms"
-              data-toggle="modal"
-              data-target="#exampleModalLong"
-              style={{ color: "black", fontWeight: "650" }}
-            >
-              <i className="bx bx-grid-alt"></i>
-              <span className="links-name">Terms</span>
-            </Link>
-          </li>
-        </ul>
+      <div id="wrapper" className={isActive ? "active" : null}>
+        <div id="sidebar-wrapper">
+          <ul id="sidebar_menu" className="sidebar-nav">
+            <li className="sidebar-brand">
+              <a id="menu-toggle" href="#" onClick={toggleClass}>
+                Menu
+                <span
+                  id="main_icon"
+                  className="glyphicon glyphicon-align-justify"
+                ></span>
+              </a>
+            </li>
+          </ul>
+          <ul className="sidebar-nav" id="sidebar">
+            <li>
+              <a>
+                Orders
+                <span className="sub_icon glyphicon glyphicon-shopping-cart"></span>
+              </a>
+            </li>
+            <li>
+              <a>
+                Products
+                <span className="sub_icon glyphicon glyphicon-gift"></span>
+              </a>
+            </li>
+            <li>
+              <a>
+                Insights
+                <span className="sub_icon glyphicon glyphicon-signal"></span>
+              </a>
+            </li>
+            <li>
+              <a>
+                Reviews
+                <span className="sub_icon glyphicon glyphicon-star"></span>
+              </a>
+            </li>
+            <li>
+              <a>
+                Settings
+                <span className="sub_icon glyphicon glyphicon-cog"></span>
+              </a>
+            </li>
+            <li>
+              <a id="nav-terms" style={{ borderBottom: "2px solid limegreen" }}>
+                Terms
+                <span className="sub_icon glyphicon glyphicon-thumbs-up"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

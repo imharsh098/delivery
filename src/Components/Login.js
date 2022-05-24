@@ -20,6 +20,9 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginAction(data.email, data.password));
+    setTimeout(() => {
+      history("/order");
+    }, 2000);
   };
 
   return (

@@ -5,147 +5,68 @@ import image1 from "./assets/img/image1.png";
 import image2 from "./assets/img/image2.png";
 import image3 from "./assets/img/image3.png";
 import image4 from "./assets/img/image4.png";
+import image6 from "./assets/img/image6.png";
+import image7 from "./assets/img/image7.png";
+import ravity from "./assets/img/ravity.png";
 
 function Home() {
-  // const dispatch = useDispatch();
-  // const history = useNavigate();
-  // const userLogin = useSelector((state) => state.userLogin);
-  // const { userInfo, loading, error } = userLogin;
-  // const userRegister = useSelector((state) => state.userRegister);
-  // const { userInfo: registerInfo } = userRegister;
-  // // login function
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   dispatch(loginAction(log.email, log.password));
-  // };
-  // // register function
-  // const handleRegister = async (e) => {
-  //   e.preventDefault();
-  //   dispatch(
-  //     registerAction({
-  //       storeName: reg.storeName,
-  //       fullName: reg.fullName,
-  //       phoneNo: reg.phoneNo,
-  //       address: {
-  //         city: reg.city,
-  //         country: reg.country,
-  //         state: reg.state,
-  //         zip: reg.zip,
-  //         address1: reg.address1,
-  //         address2: reg.address2,
-  //       },
-  //       services: reg.services,
-  //       categories: reg.categories,
-  //       active: reg.active,
-  //       ownerAadhar: reg.ownerAadhar,
-  //       gst: reg.gst,
-  //       email: reg.emaill,
-  //       liscenseNo: reg.licenseNo,
-  //       ownerPan: reg.ownerPan,
-  //       bankName: reg.bankName,
-  //       accountHolder: reg.accountHolder,
-  //       accountNo: reg.accountNo,
-  //       ifsc: reg.ifsc,
-  //       vendorType: reg.vendorType,
-  //       upiId: reg.upiId,
-  //       storeManager: reg.storeManager,
-  //       whatsappUpdate: reg.whatsappUpdate,
-  //       password: reg.passwordd,
-  //     })
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     history("/order");
-  //   }
-  // }, [userLogin]);
-  // useEffect(async () => {
-  //   if (registerInfo) {
-  //     history("/product");
-  //   }
-  // }, [userRegister]);
-  // const [reg, setReg] = useState({
-  //   storeName: "",
-  //   fullName: "",
-  //   phoneNo: "",
-  //   emaill: "",
-  //   city: "",
-  //   country: "",
-  //   state: "",
-  //   zip: "",
-  //   address1: "",
-  //   address2: "",
-  //   services: "",
-  //   categories: "",
-  //   active: false,
-  //   ownerAadhar: "",
-  //   gst: "",
-  //   licenseNo: "",
-  //   ownerPan: "",
-  //   bankName: "",
-  //   accountHolder: "",
-  //   accountNo: "",
-  //   ifsc: "",
-  //   vendorType: "",
-  //   upiId: "",
-  //   storeManager: "",
-  //   whatsappUpdate: false,
-  //   passwordd: "",
-  // });
-  // const [log, setLog] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const registration = (e) => {
-  //   setReg({ ...reg, [e.target.id]: e.target.value });
-  // };
-  // const loggingIn = (e) => {
-  //   setLog({ ...log, [e.target.id]: e.target.value });
-  // };
-  // const redirect = () => {
-  //   history("/order");
-  // };
-
   return (
     <div>
       <nav
-        className="Home navbar-expand-lg navbar-light bg-white"
-        style={{ width: "100%", height: "5rem" }}
+        className="Home navbar-expand-lg navbar-light bg-success"
+        style={{ width: "100%", height: "4rem" }}
       >
         <div
           className="container"
-          style={{ display: "flex", justifyContent: "end", padding: "1rem" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            // padding: "1rem",
+            width: "100%",
+            height: "100%",
+            backgroundColor: "28A745",
+          }}
         >
-          <Link to="/login">
-            <button
-              type="button"
-              className="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3"
-              style={{
-                width: "100%",
-                fontSize: "1.5rem",
-                backgroundColor: "limegreen",
-                border: "none",
-              }}
-            >
-              Login
-            </button>
-          </Link>
-          <Link to="/register">
-            <button
-              type="button"
-              className="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3"
-              style={{
-                width: "100%",
-                fontSize: "1.5rem",
-                backgroundColor: "limegreen",
-                border: "none",
-              }}
-            >
-              Register
-            </button>
-          </Link>
+          <img src={ravity} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "right",
+              // padding: "1rem",
+              width: "80%",
+              height: "100%",
+              backgroundColor: "28A745",
+            }}
+          >
+            <Link to="/login">
+              <button
+                type="button"
+                className="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3"
+                style={{
+                  width: "20%",
+                  fontSize: "1.5rem",
+                  border: "none",
+                  backgroundColor: "#28A745",
+                }}
+              >
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button
+                type="button"
+                className="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3"
+                style={{
+                  width: "20%",
+                  fontSize: "1.5rem",
+                  border: "none",
+                  backgroundColor: "#28A745",
+                }}
+              >
+                Register
+              </button>
+            </Link>
+          </div>
         </div>
       </nav>
       <section className="slice py-2">
@@ -187,108 +108,35 @@ function Home() {
           </div>
         </div>
       </section>
-      <div>
-        <section
-          className="slice slice-lg pt-lg-30 pb-30 pb-lg-30 bg-section-secondary"
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            flexWrap: "wrap",
-          }}
-        >
-          <div className="card" style={{ width: "40%", marginBottom: "1rem" }}>
-            <div className="card-body pb-1">
-              <div className="pt-2 pb-1">
-                <img
-                  src={image1}
-                  className="img-fluid img-center"
-                  style={{ height: "100px" }}
-                  alt="Illustration"
-                />
-              </div>
-              <h5 className="h4 lh-130 mb-3">Medicines & Pharmacy</h5>
-              <p className="text-muted mb-0">
-                Increase your sales by being visible to more audience within
-                your city.
-              </p>
+      <section className="slice py-2">
+        <div className="row row-grid align-items-center">
+          <div className="container">
+            <h1>Categories</h1>
+          </div>
+        </div>
+        <div className="row row-grid align-items-center">
+          <div className="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
+            <div className="w-100">
+              <img
+                alt="Image placeholder"
+                src={image6}
+                className="img-fluid mw-md-120"
+                style={{ marginLeft: "7rem" }}
+              />
             </div>
           </div>
-          <div className="card" style={{ width: "40%", marginBottom: "1rem" }}>
-            <div className="card-body pb-1">
-              <div className="pt-2 pb-1">
-                <img
-                  src={image4}
-                  className="img-fluid img-center"
-                  style={{ height: "100px" }}
-                  alt="Illustration"
-                />
-              </div>
-              <h5 className="h4 lh-130 mb-3">Vegetables & Fruits</h5>
-              <p className="text-muted mb-0">
-                Increase your sales by being visible to more audience within
-                your city.
-              </p>
+          <div className="col-12 col-md-7 col-lg-6 order-md-1 pr-md-5">
+            <div className="w-100">
+              <img
+                alt="Image placeholder"
+                src={image7}
+                className="img-fluid mw-md-120"
+              />
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="card" style={{ width: "40%", marginBottom: "1rem" }}>
-            <div className="card-body pb-1">
-              <div className="pt-2 pb-1">
-                <img
-                  src={image2}
-                  className="img-fluid img-center"
-                  style={{ height: "100px" }}
-                  alt="Illustration"
-                />
-              </div>
-              <h5 className="h4 lh-130 mb-3">Food & Beverages</h5>
-              <p className="text-muted mb-0">
-                Increase your sales by being visible to more audience within
-                your city.
-              </p>
-            </div>
-          </div>
-          <div className="card" style={{ width: "40%", marginBottom: "1rem" }}>
-            <div className="card-body pb-1">
-              <div className="pt-2 pb-1">
-                <img
-                  src={image3}
-                  className="img-fluid img-center"
-                  style={{ height: "100px" }}
-                  alt="Illustration"
-                />
-              </div>
-              <h5 className="h4 lh-130 mb-3">Pet Supplies</h5>
-              <p className="text-muted mb-0">
-                Increase your sales by being visible to more audience within
-                your city.
-              </p>
-            </div>
-          </div>
-
-          {/* <div className="column" style="float:right;">
-            <div className="row">
-              <div className="card">
-                <div className="card-body-con pb-1">
-                  <div className="pt-6 pb-5">
-                    <img
-                      src="assets/img/svg/illustrations/a9.png"
-                      className="img-fluid img-center"
-                      style="height: 100px;"
-                      alt="Illustration"
-                    />
-                  </div>
-                  <h5 className="h4 lh-130 mb-3">Get more sales</h5>
-                  <p className="text-muted mb-0">
-                    Increase your sales by being visible to more audience within
-                    your city.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div> */}
-        </section>
-      </div>
       <div className="position-relative" id="footer-main">
         <div className="footer pt-lg-7 footer-primary bg-primary">
           <div className="container pt-3">

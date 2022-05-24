@@ -14,18 +14,20 @@ function Map() {
     confirmpassword: registerinfo.confirmpassword,
     phoneNo: registerinfo.phoneNo,
     storeName: registerinfo.storeName,
-    storeManager: registerinfo.storeManger,
     vendorType: registerinfo.vendorType,
-    countryCode: registerinfo.countryCode,
-    stateCode: registerinfo.stateCode,
-    zipcode: registerinfo.zipcode,
-    streetName: registerinfo.streetName,
-    streetNumber: registerinfo.streetNumber,
-    city: registerinfo.city,
     categories: registerinfo.categories,
     services: registerinfo.services,
+    openingTime: registerinfo.openingTime,
+    closingTime: registerinfo.closingTime,
+    storeManager: registerinfo.storeManager,
     latitude: "",
     longitude: "",
+    countryCode: "",
+    stateCode: "",
+    zipcode: "",
+    streetName: "",
+    streetNumber: "",
+    city: "",
   });
   const history = useNavigate();
   const [mapdata, setMapdata] = useState({ lat: 41.3851, lng: 5.1734 });
@@ -44,6 +46,10 @@ function Map() {
     });
   };
 
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.id]: e.target.value });
+  };
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success);
   });
@@ -52,10 +58,12 @@ function Map() {
     setMapdata({ lat: e.latLng.lat(), lng: e.latLng.lng() });
     console.log(e.latLng.lat(), e.latLng.lng());
   };
-  const handleSubmit = () => {
-    // e.preventDefault();
-
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
     setData({ ...data, latitude: mapdata.lat, longitude: mapdata.lng });
+    setTimeout(() => {
+      history("/register2");
+    }, 2000);
   };
   const getBack = async (e) => {
     history("/register1");
@@ -69,22 +77,50 @@ function Map() {
   return (
     <div className="container1">
       <header>Registration</header>
-      <div style={{ height: "34rem", marginTop: "1.5rem" }}>
+      <form>
+        <section className="step-wizard">
+          <ul className="step-wizard-list">
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">1</span>
+              <span className="progress-label">Pesonal Details</span>
+            </li>
+            <li className="step-wizard-item">
+              <span className="progress-count">2</span>
+              {/* <span className="progress-count">2</span-progress-count> */}
+              <span className="progress-label">Store Details</span>
+            </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">3</span>
+              {/* <span className="progress-count">2</span-progress-count> */}
+              <span className="progress-label">Store Details</span>
+            </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">4</span>
+              {/* <span className="progress-count">4</span-progress-count> */}
+              <span className="progress-label">Bank Details</span>
+            </li>
+            <li className="step-wizard-item current-item">
+              <span className="progress-count">5</span>
+              <span className="progress-label">Terms of Use</span>
+            </li>
+          </ul>
+        </section>
+        <div className="form second">
+          <div className="details personal">
+            <span className="title">Store Details</span>
+            <div className="fields">
+              
+            </div>
+          </div>
+        </div>
+      </form>
+      <div style={{ height: "15rem", marginTop: "1.5rem" }}>
         <LoadScript googleMapsApiKey="AIzaSyB3ZdwasSmzdj5giIxqCmxrJBJVwh5VwqA">
           <GoogleMap
             mapContainerStyle={mapStyles}
             zoom={13}
             center={mapdata.lat ? mapdata : defaultCenter}
           >
-            {/* {mapdata.map((item) => {
-                return (
-                  <Marker
-                    key={Math.floor(Math.random() * 10)}
-                    position={item}
-                  />
-                );
-              })} */}
-            {/* {mapdata.lat && <Marker position={mapdata} />} */}
             {mapdata.lat ? (
               <Marker
                 position={mapdata}
@@ -95,17 +131,15 @@ function Map() {
           </GoogleMap>
         </LoadScript>
       </div>
-      <div className="buttons">
-        <button className="backbtn" onClick={getBack}>
-          <span className="btnText">Back</span>
-          <i className="uil uil-navigator"></i>
-        </button>
+      <button className="backbtn" onClick={getBack}>
+        <span className="btnText">Back</span>
+        <i className="uil uil-navigator"></i>
+      </button>
 
-        <button className="nextbtn" onClick={handleSubmit}>
-          <span className="btnText">Next</span>
-          <i className="uil uil-navigator"></i>
-        </button>
-      </div>
+      <button className="nextbtn" onClick={handleSubmit2}>
+        <span className="btnText">Next</span>
+        <i className="uil uil-navigator"></i>
+      </button>
     </div>
   );
 }

@@ -36,7 +36,7 @@ function Order() {
               <div className="color_line"></div>
               <div className="pending_cards">
                 {orders.map((ele, index) => {
-                  if (ele.status === "Order Placed") {
+                  if (ele.status != "Delivered") {
                     return (
                       <PendingOrdercard key={ele._id} ele={ele} index={index} />
                     );
@@ -50,7 +50,8 @@ function Order() {
               <div className="color_line"></div>
               <div className="order-container">
                 {orders.map((ele, index) => {
-                  if (ele.status === "Order Placed") {
+                  // ele.status === "Order Accepted"
+                  if (ele.status != "Delivered") {
                     return (
                       <AllOrdercard key={ele._id} ele={ele} index={index} />
                     );

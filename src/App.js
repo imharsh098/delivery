@@ -18,6 +18,7 @@ import Register1 from "./Components/Register1.js";
 import Register2 from "./Components/Register2.js";
 import Register3 from "./Components/Register3.js";
 import Register4 from "./Components/Register4.js";
+import Register5 from "./Components/Register5.js";
 import Login from "./Components/Login.js";
 import Commission from "./Components/Commission";
 
@@ -33,6 +34,7 @@ function App() {
         <Route path="/register2" element={<Register2 />}></Route>
         <Route path="/register3" element={<Register3 />}></Route>
         <Route path="/register4" element={<Register4 />}></Route>
+        <Route path="/register5" element={<Register5 />}></Route>
         <Route path="/order" element={<Order />}></Route>
         <Route path="/product" element={<Product />}></Route>
         <Route path="/support" element={<Support />}></Route>

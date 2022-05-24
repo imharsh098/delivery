@@ -7,13 +7,6 @@ function Register2() {
   const registerinfo = localStorage.getItem("registerinfo")
     ? JSON.parse(localStorage.getItem("registerinfo"))
     : "";
-  // const [newdata, setNewdata] = useState({
-  //   uploadAadharfront: "",
-  //   uploadAadharback: "",
-  //   uploadPan: "",
-  //   uploadGSTcertificate: "",
-  //   uploadMenu: "",
-  // });
   const [data, setData] = useState({
     fullName: registerinfo.fullName,
     email: registerinfo.email,
@@ -21,7 +14,7 @@ function Register2() {
     confirmpassword: registerinfo.confirmpassword,
     phoneNo: registerinfo.phoneNo,
     storeName: registerinfo.storeName,
-    storeManager: registerinfo.storeManger,
+    storeManager: registerinfo.storeManager,
     vendorType: registerinfo.vendorType,
     countryCode: registerinfo.countryCode,
     stateCode: registerinfo.stateCode,
@@ -31,17 +24,14 @@ function Register2() {
     city: registerinfo.city,
     categories: registerinfo.categories,
     services: registerinfo.services,
-    uploadAadharfront: "",
-    uploadAadharback: "",
+    openingTime: registerinfo.openingTime,
+    closingTime: registerinfo.closingTime,
+    latitude: registerinfo.latitude,
+    longitude: registerinfo.longitude,
     uploadPan: "",
     uploadGSTcertificate: "",
     uploadMenu: "",
-
-    latitude: registerinfo.latitude,
-    longitude: registerinfo.longitude,
     panNo: "",
-    aadharNo: "",
-
     liscenseNo: "",
     gst: "",
   });
@@ -50,23 +40,13 @@ function Register2() {
   };
 
   const handleChange = (e) => {
-    if (e.target.id === "uploadAadharfront") {
-      console.log(e.target.files, "1");
-      setData({ ...data, [e.target.id]: e.target.files[0] });
-    }
-    if (e.target.id === "uploadAadharback") {
-      console.log(e.target.files, "2");
-      setData({ ...data, [e.target.id]: e.target.files[0] });
-    }
     if (e.target.id === "uploadPan") {
       console.log(e.target.files, "3");
       setData({ ...data, [e.target.id]: e.target.files[0] });
-    }
-    if (e.target.id === "uploadGSTcertificate") {
+    } else if (e.target.id === "uploadGSTcertificate") {
       console.log(e.target.files, "4");
       setData({ ...data, [e.target.id]: e.target.files[0] });
-    }
-    if (e.target.id === "uploadMenu") {
+    } else if (e.target.id === "uploadMenu") {
       console.log(e.target.files, "5");
       setData({ ...data, [e.target.id]: e.target.files[0] });
     } else {
@@ -77,6 +57,9 @@ function Register2() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem("registerinfo", JSON.stringify(data));
+    setTimeout(() => {
+      history("/register3");
+    }, 2000);
   };
   return (
     <div className="container1">
@@ -114,6 +97,17 @@ function Register2() {
             <span className="title">Store Details</span>
             <div className="fields">
               <div className="input-fields">
+                <label for="">License Number</label>
+                <input
+                  type="text"
+                  id="liscenseNo"
+                  value={data.liscenseNo}
+                  onChange={handleChange}
+                  placeholder="Enter License Number"
+                  required
+                />
+              </div>
+              <div className="input-fields">
                 <label for="">Upload Product Menu</label>
                 <input
                   type="file"
@@ -148,89 +142,6 @@ function Register2() {
                   Upload
                 </button>
               </div>
-              <div className="input-fields">
-                <label for="">Aadhar Number</label>
-                <input
-                  type="number"
-                  id="aadharNo"
-                  value={data.aadharNo}
-                  onChange={handleChange}
-                  placeholder="Enter Your Aadhar Number"
-                  required="required"
-                />
-              </div>
-
-              <div className="input-fields">
-                <label for="">Image of Aadhar card (Front)</label>
-                <input
-                  type="file"
-                  id="uploadAadharfront"
-                  name="image"
-                  onChange={handleChange}
-                  placeholder=""
-                  required="required"
-                />
-                <button
-                  onClick={async () => {
-                    const formData2 = new FormData();
-                    // Update the formData object
-                    formData2.append("image", data.uploadAadharfront);
-                    // setData({ ...data, [e.target.id]: e.target.files[0] });
-                    const config = {
-                      headers: {
-                        contentType: "multipart/form-data",
-                      },
-                    };
-                    const imagedata2 = await axios.post(
-                      `/api/upload/`,
-                      formData2,
-                      config
-                    );
-                    setData({
-                      ...data,
-                      uploadAadharfront: imagedata2.data.imagedata,
-                    });
-                  }}
-                >
-                  Upload
-                </button>
-              </div>
-              <div className="input-fields">
-                <label for="">Image of Aadhar card (Back)</label>
-                <input
-                  type="file"
-                  id="uploadAadharback"
-                  name="image"
-                  onChange={handleChange}
-                  placeholder=""
-                  required="required"
-                />
-                <button
-                  onClick={async () => {
-                    const formData3 = new FormData();
-                    // Update the formData object
-                    formData3.append("image", data.uploadAadharback);
-                    // setData({ ...data, [e.target.id]: e.target.files[0] });
-                    const config = {
-                      headers: {
-                        contentType: "multipart/form-data",
-                      },
-                    };
-                    const imagedata3 = await axios.post(
-                      `/api/upload/`,
-                      formData3,
-                      config
-                    );
-                    setData({
-                      ...data,
-                      uploadAadharback: imagedata3.data.imagedata,
-                    });
-                  }}
-                >
-                  Upload
-                </button>
-              </div>
-
               <div className="input-fields">
                 <label for="">PAN Card</label>
                 <input
@@ -277,17 +188,6 @@ function Register2() {
                 >
                   Upload
                 </button>
-              </div>
-              <div className="input-fields">
-                <label for="">License Number</label>
-                <input
-                  type="text"
-                  id="liscenseNo"
-                  value={data.liscenseNo}
-                  onChange={handleChange}
-                  placeholder="Enter License Number"
-                  required
-                />
               </div>
 
               <div className="input-fields">

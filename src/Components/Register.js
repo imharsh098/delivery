@@ -18,7 +18,9 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("registerinfo", JSON.stringify(data));
-    history("/register1");
+    setTimeout(() => {
+      history("/register1");
+    }, 2000);
   };
 
   return (
@@ -112,7 +114,11 @@ function Register() {
               </div>
             </div>
 
-            <button className="nextbtn" type="submit">
+            <button
+              className="nextbtn"
+              type="submit"
+              disabled={!(data.password === data.confirmpassword)}
+            >
               <span className="btnText">Next</span>
               <i className="uil uil-navigator"></i>
             </button>

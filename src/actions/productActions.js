@@ -9,7 +9,7 @@ import {
   REMOVE_ERROR,
 } from "../types";
 
-export const listproducts = () => async (dispatch, getState) => {
+export const listproducts = (category) => async (dispatch, getState) => {
   try {
     const userInfo = localStorage.getItem("userInfo")
       ? JSON.parse(localStorage.getItem("userInfo"))
@@ -22,7 +22,7 @@ export const listproducts = () => async (dispatch, getState) => {
       },
     };
     const { data } = await axios.get(
-      `/api/products/vendor/get-products/Medicines`,
+      `/api/products/vendor/get-products/${category}`,
       config
     );
     dispatch({

@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Register3() {
   const history = useNavigate();
@@ -16,7 +17,7 @@ function Register3() {
     password: registerinfo.password,
     confirmpassword: registerinfo.confirmpassword,
     storeName: registerinfo.storeName,
-    storeManager: registerinfo.storeManger,
+    storeManager: registerinfo.storeManager,
     vendorType: registerinfo.vendorType,
     countryCode: registerinfo.countryCode,
     stateCode: registerinfo.stateCode,
@@ -25,14 +26,13 @@ function Register3() {
     streetNumber: registerinfo.streetNumber,
     city: registerinfo.city,
     categories: registerinfo.categories,
+    openingTime: registerinfo.openingTime,
+    closingTime: registerinfo.closingTime,
     services: registerinfo.services,
     uploadMenu: registerinfo.uploadMenu,
     latitude: registerinfo.latitude,
     longitude: registerinfo.longitude,
     panNo: registerinfo.panNo,
-    aadharNo: registerinfo.aadharNo,
-    uploadAadharfront: registerinfo.uploadAadharfront,
-    uploadAadharback: registerinfo.uploadAadharback,
     uploadPan: registerinfo.uploadPan,
     uploadGSTcertificate: registerinfo.uploadGSTcertificate,
     liscenseNo: registerinfo.liscenseNo,
@@ -46,12 +46,19 @@ function Register3() {
   });
 
   const handleChange = (e) => {
-    setData({ ...data, [e.target.id]: e.target.value });
+    if (e.target.id === "cancelledCheque") {
+      console.log(e.target.files, "1");
+      setData({ ...data, [e.target.id]: e.target.files[0] });
+    } else {
+      setData({ ...data, [e.target.id]: e.target.value });
+    }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     localStorage.setItem("registerinfo", JSON.stringify(data));
-    history("/register4");
+    setTimeout(() => {
+      history("/register4");
+    }, 2000);
   };
   return (
     <div className="container1">
@@ -147,13 +154,36 @@ function Register3() {
               <div className="input-fields">
                 <label for="">Upload (Passbook or Cancel Cheque)</label>
                 <input
-                  type="text"
+                  type="file"
                   id="cancelledCheque"
-                  value={data.cancelledCheque}
                   onChange={handleChange}
                   placeholder="Upload passbook/cancelled cheque"
                   required
                 />
+                <button
+                  onClick={async () => {
+                    const formData1 = new FormData();
+                    // Update the formData object
+                    formData1.append("image", data.cancelledCheque);
+                    // setData({ ...data, [e.target.id]: e.target.files[0] });
+                    const config = {
+                      headers: {
+                        contentType: "multipart/form-data",
+                      },
+                    };
+                    const imagedata1 = await axios.post(
+                      `/api/upload/`,
+                      formData1,
+                      config
+                    );
+                    setData({
+                      ...data,
+                      cancelledCheque: imagedata1.data.imagedata,
+                    });
+                  }}
+                >
+                  Upload
+                </button>
               </div>
             </div>
             <div className="buttons">
@@ -162,7 +192,7 @@ function Register3() {
                 <i className="uil uil-navigator"></i>
               </button>
               <button className="nextbtn" type="submit">
-                <span className="btnText">Submit</span>
+                <span className="btnText">Next</span>
                 <i className="uil uil-navigator"></i>
               </button>
             </div>

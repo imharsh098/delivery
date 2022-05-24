@@ -22,7 +22,7 @@ function Review() {
       };
       const { data } = await axios.get(`/api/orders/fetchReviews`, config);
       console.log(2, data);
-      setDataReview(data);
+      setDataReview(data.reviews);
     }
   }, []);
   return (
