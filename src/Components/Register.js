@@ -25,36 +25,11 @@ function Register() {
 
   return (
     <div className="container1">
-      <header>Registration</header>
+      <header>Personal Details</header>
       <form onSubmit={handleSubmit}>
-        <section className="step-wizard">
-          <ul className="step-wizard-list">
-            <li className="step-wizard-item">
-              <span className="progress-count">1</span>
-              <span className="progress-label">Pesonal Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">2</span>
-
-              <span className="progress-label">Store Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">3</span>
-              <span className="progress-label">Store Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">4</span>
-              <span className="progress-label">Bank Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">5</span>
-              <span className="progress-label">Terms of Use</span>
-            </li>
-          </ul>
-        </section>
         <div className="form first">
           <div className="details personal">
-            <span className="title">Personal Details</span>
+            {/* <span className="title">Personal Details</span> */}
             <div className="fields">
               <div className="input-fields">
                 <label for="">Full Name</label>

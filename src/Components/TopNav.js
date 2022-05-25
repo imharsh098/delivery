@@ -17,9 +17,9 @@ function TopNav() {
   };
   return (
     <div className="topnav">
-      <Link className="activee hamburger" to="/wallet">
+      {/* <Link className="activee hamburger" to="/wallet">
         <i className="fa-solid fa-fw fa-wallet"></i>Burger
-      </Link>
+      </Link> */}
       <Link className="activee" to="/map">
         <i className="fa-solid fa-fw fa-wallet"></i>Wallet
       </Link>

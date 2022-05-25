@@ -1,6 +1,12 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import "./sideNav.css";
+import order from "./order.png";
+import product from "./product.png";
+import terms from "./terms.png";
+import insight from "./insight.png";
+import setting from "./setting.png";
+import reviews from "./reviews.png";
 
 function SideNav() {
   const [isActive, setActive] = useState(false);
@@ -25,40 +31,83 @@ function SideNav() {
           </ul>
           <ul className="sidebar-nav" id="sidebar">
             <li>
-              <a>
-                Orders
-                <span className="sub_icon glyphicon glyphicon-shopping-cart"></span>
-              </a>
+              <a>Orders</a>
+              <img
+                src={order}
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  color: "black",
+                  marginTop: "2rem",
+                  marginRight: "1rem",
+                }}
+              />
             </li>
             <li>
-              <a>
-                Products
-                <span className="sub_icon glyphicon glyphicon-gift"></span>
-              </a>
+              <a>Product</a>
+              <img
+                src={product}
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  color: "black",
+                  marginTop: "2rem",
+                  marginRight: "1rem",
+                  fontWeight: "700",
+                }}
+              />
             </li>
             <li>
-              <a>
-                Insights
-                <span className="sub_icon glyphicon glyphicon-signal"></span>
-              </a>
+              <a>Insights</a>
+              <img
+                src={insight}
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  color: "black",
+                  marginTop: "2rem",
+                  marginRight: "1rem",
+                }}
+              />
             </li>
             <li>
-              <a>
-                Reviews
-                <span className="sub_icon glyphicon glyphicon-star"></span>
-              </a>
+              <a>Reviews</a>
+              <img
+                src={reviews}
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  color: "black",
+                  marginTop: "2rem",
+                  marginRight: "1rem",
+                }}
+              />
             </li>
             <li>
-              <a>
-                Settings
-                <span className="sub_icon glyphicon glyphicon-cog"></span>
-              </a>
+              <a>Settings</a>
+              <img
+                src={setting}
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  color: "black",
+                  marginTop: "2rem",
+                  marginRight: "1rem",
+                }}
+              />
             </li>
             <li>
-              <a id="nav-terms" style={{ borderBottom: "2px solid limegreen" }}>
-                Terms
-                <span className="sub_icon glyphicon glyphicon-thumbs-up"></span>
-              </a>
+              <a>Terms</a>
+              <img
+                src={terms}
+                style={{
+                  width: "4rem",
+                  height: "4rem",
+                  color: "black",
+                  marginTop: "2rem",
+                  marginRight: "1rem",
+                }}
+              />
             </li>
           </ul>
         </div>

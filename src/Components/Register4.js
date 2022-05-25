@@ -109,7 +109,7 @@ function Register4() {
   };
   return (
     <div className="container1">
-      <header>Registration</header>
+      <header>Terms of Use</header>
       <form onSubmit={handleSubmit}>
         <section className="step-wizard">
           <ul className="step-wizard-list">

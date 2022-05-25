@@ -77,38 +77,10 @@ function Register1() {
 
   return (
     <div className="container1">
-      <header>Registration</header>
+      <header>Store Details</header>
       <form>
-        <section className="step-wizard">
-          <ul className="step-wizard-list">
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">1</span>
-              <span className="progress-label">Pesonal Details</span>
-            </li>
-            <li className="step-wizard-item">
-              <span className="progress-count">2</span>
-              {/* <span className="progress-count">2</span-progress-count> */}
-              <span className="progress-label">Store Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">3</span>
-              {/* <span className="progress-count">2</span-progress-count> */}
-              <span className="progress-label">Store Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">4</span>
-              {/* <span className="progress-count">4</span-progress-count> */}
-              <span className="progress-label">Bank Details</span>
-            </li>
-            <li className="step-wizard-item current-item">
-              <span className="progress-count">5</span>
-              <span className="progress-label">Terms of Use</span>
-            </li>
-          </ul>
-        </section>
         <div className="form second">
           <div className="details personal">
-            <span className="title">Store Details</span>
             <div className="fields">
               <div className="input-fields">
                 <label for="">Store Name</label>
@@ -137,7 +109,7 @@ function Register1() {
                 <input
                   type="time"
                   min="9:00"
-                  max="18:00"
+                  max="23:00"
                   id="openingTime"
                   value={data.openingTime}
                   onChange={handleChange}
@@ -150,12 +122,58 @@ function Register1() {
                 <input
                   type="time"
                   min="9:00"
-                  max="18:00"
+                  max="23:00"
                   id="closingTime"
                   value={data.closingTime}
                   onChange={handleChange}
                   placeholder="Store Closing Time"
                   required="required"
+                />
+              </div>
+
+              <div className="checkbox">
+                <h6 style={{ color: "blue" }}>+ Add time slots</h6>
+                <h2> Mark open days</h2>
+                <h5>Don't forget to uncheck your off-day</h5>
+                <br />
+                <br />
+                <input type="checkbox" id="monday" required="required" />
+                <h3>Monday</h3>
+                <br />
+                <input type="checkbox" id="tuesday" />
+                <h3>Tuesday</h3>
+                <br />
+                <input type="checkbox" id="wednesday" />
+                <h3>Wednesday</h3>
+                <br />
+                <input type="checkbox" id="thursday" />
+                <h3>Thursday</h3>
+                <br />
+              </div>
+              <div className="checkbox">
+                <br />
+                <br />
+                <br />
+                <br />
+                <input type="checkbox" id="friday" required="required" />
+                <h3>Friday</h3>
+                <br />
+                <input type="checkbox" id="saturday" />
+                <h3>Saturday</h3>
+                <br />
+                <input type="checkbox" id="sunday" />
+                <h3>Sunday</h3>
+                <br />
+              </div>
+              <div className="input-fields">
+                <label for="">Store Manager</label>
+                <input
+                  type="text"
+                  id="storeManager"
+                  value={data.storeManager}
+                  onChange={handleChange}
+                  placeholder="Enter Store Manager Name"
+                  required
                 />
               </div>
 
@@ -196,19 +214,8 @@ function Register1() {
                   <option value="All Services">All Services</option>
                 </select>
               </div>
-              <div className="input-fields">
-                <label for="">Store Manager</label>
-                <input
-                  type="text"
-                  id="storeManager"
-                  value={data.storeManager}
-                  onChange={handleChange}
-                  placeholder="Enter Store Manager Name"
-                  required
-                />
-              </div>
             </div>
-            <div style={{ height: "30rem", marginTop: "1.5rem" }}>
+            <div style={{ height: "32rem", marginTop: "1.5rem" }}>
               <LoadScript googleMapsApiKey="AIzaSyB3ZdwasSmzdj5giIxqCmxrJBJVwh5VwqA">
                 <GoogleMap
                   mapContainerStyle={mapStyles}
